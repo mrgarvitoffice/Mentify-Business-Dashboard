@@ -10,7 +10,6 @@ import {
   Users,
   Megaphone,
   Trophy,
-  Bot,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +24,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Logo } from "@/components/icons";
 import { user } from "@/lib/data";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -76,7 +76,7 @@ export default function DashboardLayout({
         </div>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+        <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-50">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -117,6 +117,7 @@ export default function DashboardLayout({
           <div className="w-full flex-1">
             {/* Can add search bar here if needed */}
           </div>
+          <ThemeSwitcher />
           <Button variant="outline" size="icon" className="h-8 w-8">
             <Bell className="h-4 w-4" />
             <span className="sr-only">Toggle notifications</span>
@@ -143,7 +144,7 @@ export default function DashboardLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-muted/20">
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
           {children}
         </main>
       </div>
