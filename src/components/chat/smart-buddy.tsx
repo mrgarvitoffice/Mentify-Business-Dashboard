@@ -114,7 +114,7 @@ export function SmartBuddy() {
       <SheetTrigger asChild>
         <Button
           variant="default"
-          className="fixed bottom-20 right-4 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 z-50 md:bottom-6 md:right-6"
+          className="fixed bottom-20 right-4 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 z-50 md:bottom-6 md:right-6 animate-float hover:animate-none transition-transform hover:scale-110"
         >
           <Bot className="h-8 w-8 text-primary-foreground" />
         </Button>

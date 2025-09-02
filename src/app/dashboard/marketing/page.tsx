@@ -23,7 +23,7 @@ export default function MarketingPage() {
         </CardHeader>
         <CardContent className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {marketingAssets.map((asset, index) => (
-            <Card key={index} className="flex flex-col">
+            <Card key={index} className="flex flex-col transition-all duration-300 hover:shadow-lg hover:scale-[1.03]">
               <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-primary">{asset.type}</p>

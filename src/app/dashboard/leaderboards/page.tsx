@@ -73,7 +73,7 @@ function MobileLeaderboardList({ data, type }: { data: LeaderboardUser[], type: 
     return (
         <div className="space-y-3">
             {data.map((user) => (
-                <Card key={user.id} className={cn(user.name.startsWith("You") && "bg-primary/10 border-primary/50")}>
+                <Card key={user.id} className={cn("transition-all duration-300 hover:shadow-lg hover:scale-[1.02]", user.name.startsWith("You") && "bg-primary/10 border-primary/50")}>
                     <CardContent className="p-4 flex items-center gap-4">
                         <div className="text-2xl font-bold text-muted-foreground w-8 text-center">{user.rank}</div>
                         <Avatar className="h-12 w-12">
@@ -107,7 +107,7 @@ export default function LeaderboardsPage() {
     <>
       <h1 className="text-3xl font-bold">Leaderboards</h1>
       <div className="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
-        <Card>
+        <Card className="transition-all duration-300 hover:shadow-xl">
           <CardHeader>
             <CardTitle>Top Earners (Monthly)</CardTitle>
             <CardDescription>Recognizing the highest income earners.</CardDescription>
@@ -124,7 +124,7 @@ export default function LeaderboardsPage() {
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="transition-all duration-300 hover:shadow-xl">
           <CardHeader>
             <CardTitle>Top Recruiters (Monthly)</CardTitle>
             <CardDescription>Celebrating the top network builders.</CardDescription>

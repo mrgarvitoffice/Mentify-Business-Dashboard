@@ -25,7 +25,7 @@ async function OpportunityAlerts() {
   const { alerts } = await getAlertsAction();
 
   return (
-    <Card className="lg:col-span-3">
+    <Card className="lg:col-span-3 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Lightbulb className="h-6 w-6 text-accent" />
@@ -67,7 +67,7 @@ export default function DashboardPage() {
         <CarouselContent>
           {promotions.map((promo) => (
             <CarouselItem key={promo.id}>
-              <Card className="overflow-hidden border-0">
+              <Card className="overflow-hidden border-0 transition-all duration-300 hover:shadow-xl">
                 <div className="relative h-48 w-full">
                   <Image
                     src={promo.image}
@@ -92,7 +92,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {kpiData.map((kpi) => (
-          <Card key={kpi.title}>
+          <Card key={kpi.title} className="transition-all duration-300 hover:shadow-lg hover:scale-105">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
               <kpi.icon className="h-4 w-4 text-muted-foreground" />
@@ -111,7 +111,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
+        <Card className="lg:col-span-4 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
           <CardHeader>
             <CardTitle>Next Pool Qualification</CardTitle>
             <CardDescription>
@@ -132,7 +132,7 @@ export default function DashboardPage() {
         
         <OpportunityAlerts />
 
-        <Card className="lg:col-span-3">
+        <Card className="lg:col-span-3 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
           <CardHeader>
             <CardTitle>Recent Achievements</CardTitle>
             <CardDescription>Your latest milestones and awards.</CardDescription>
