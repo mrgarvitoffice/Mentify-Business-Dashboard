@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background-start-rgb: 245, 249, 255;
-    --background-end-rgb: 255, 255, 255;
-    --background: 220 20% 98%;
-    --foreground: 224 71% 4%;
+    --background-start-rgb: 250, 245, 239; /* Warm Beige Start */
+    --background-end-rgb: 253, 250, 247;   /* Lighter Beige End */
+    --background: 30 56% 96%; /* HSL for Beige */
+    --foreground: 20 15% 25%; /* Darker, softer black for text */
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 20 15% 25%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 217 100% 58%; /* Vibrant Electric Blue */
+    --popover-foreground: 20 15% 25%;
+    --primary: 205 82% 50%; /* Softer, professional blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 180 100% 50%; /* Neon Teal */
-    --secondary-foreground: 224 71% 4%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 337 100% 63%; /* Gradient Magenta */
+    --secondary: 175 60% 45%; /* Muted Teal */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 30 40% 95%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 350 80% 60%; /* Warm Coral/Pink */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 100% 58%;
+    --border: 30 30% 90%;
+    --input: 30 30% 90%;
+    --ring: 205 82% 50%;
     --radius: 0.75rem;
-    --chart-1: 217 100% 58%;
-    --chart-2: 180 100% 50%;
-    --chart-3: 337 100% 63%;
-    --chart-4: 151 83% 34%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 205 82% 50%;
+    --chart-2: 175 60% 45%;
+    --chart-3: 350 80% 60%;
+    --chart-4: 25 80% 55%;
+    --chart-5: 190 70% 50%;
   }
 
   .dark {
@@ -74,7 +74,7 @@
   }
   
   .dark body {
-    background: linear-gradient(180deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+    background: rgb(var(--background-start-rgb));
   }
 
   .light body {
