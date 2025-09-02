@@ -21,7 +21,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function IncomePage() {
   return (
@@ -96,6 +96,7 @@ export default function IncomePage() {
                 ))}
               </TableBody>
             </Table>
+             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </CardContent>
       </Card>

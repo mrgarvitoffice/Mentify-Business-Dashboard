@@ -17,7 +17,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { topEarners, topRecruiters, poolColors } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 
 export default function LeaderboardsPage() {
@@ -56,6 +56,7 @@ export default function LeaderboardsPage() {
                   ))}
                 </TableBody>
               </Table>
+                <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </CardContent>
         </Card>
@@ -91,6 +92,7 @@ export default function LeaderboardsPage() {
                   ))}
                 </TableBody>
               </Table>
+              <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </CardContent>
         </Card>

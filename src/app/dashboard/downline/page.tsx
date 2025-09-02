@@ -186,11 +186,11 @@ export default function DownlinePage() {
           </div>
           
           <ScrollArea
-            ref={flowchartRef}
-            className="w-full rounded-lg bg-muted/20 p-8 border"
+            className="w-full h-[60vh] rounded-lg bg-muted/20 p-8 border"
             onWheel={handleWheel}
           >
             <div 
+              ref={flowchartRef}
               className="min-w-max transition-transform duration-300 ease-in-out"
               style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}
             >
@@ -276,5 +276,7 @@ export default function DownlinePage() {
     </>
   );
 }
+
+    
 
     
