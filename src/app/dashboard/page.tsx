@@ -1,4 +1,6 @@
 
+"use client";
+
 import {
   Card,
   CardContent,
@@ -20,9 +22,45 @@ import { ArrowUp, LayoutDashboard, Lightbulb } from "lucide-react";
 import { kpiData, poolData, achievements, promotions, user } from "@/lib/data";
 import { getAlertsAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
+import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
-async function OpportunityAlerts() {
-  const { alerts } = await getAlertsAction();
+type Alert = {
+  downlineMemberId: string;
+  currentPool: string;
+  nextPool: string;
+  businessVolumeNeeded: number;
+  recommendation: string;
+};
+
+function OpportunityAlerts() {
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAlerts() {
+      try {
+        const result = await getAlertsAction();
+        setAlerts(result.alerts);
+      } catch (error) {
+        console.error("Failed to fetch alerts", error);
+        setAlerts([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAlerts();
+  }, []);
 
   return (
     <Card className="lg:col-span-3 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
@@ -34,7 +72,9 @@ async function OpportunityAlerts() {
         <CardDescription>AI-powered insights to grow your business.</CardDescription>
       </CardHeader>
       <CardContent>
-        {alerts.length > 0 ? (
+        {loading ? (
+           <p className="text-sm text-muted-foreground">Loading alerts...</p>
+        ) : alerts.length > 0 ? (
           <ul className="space-y-3">
             {alerts.map((alert) => (
               <li key={alert.downlineMemberId} className="text-sm text-muted-foreground">
@@ -51,6 +91,57 @@ async function OpportunityAlerts() {
   );
 }
 
+function TermsAndConditionsDialog() {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="link" className="text-muted-foreground hover:text-primary">Terms & Conditions</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle>Terms and Conditions</DialogTitle>
+                    <DialogDescription>
+                        Last updated: {new Date().toLocaleDateString()}
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="prose prose-sm dark:prose-invert max-h-[60vh] overflow-y-auto pr-4">
+                    <p>Welcome to MentifyAI!</p>
+                    <p>These terms and conditions outline the rules and regulations for the use of MentifyAI's Website, located at your-website.com.</p>
+                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use MentifyAI if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+                    <h4>Cookies:</h4>
+                    <p>The website uses cookies to help personalize your online experience. By accessing MentifyAI, you agreed to use the required cookies.</p>
+                    
+                    <h4>License:</h4>
+                    <p>Unless otherwise stated, MentifyAI and/or its licensors own the intellectual property rights for all material on MentifyAI. All intellectual property rights are reserved. You may access this from MentifyAI for your own personal use subjected to restrictions set in these terms and conditions.</p>
+                    <p>You must not:</p>
+                    <ul>
+                        <li>Republish material from MentifyAI</li>
+                        <li>Sell, rent or sub-license material from MentifyAI</li>
+                        <li>Reproduce, duplicate or copy material from MentifyAI</li>
+                        <li>Redistribute content from MentifyAI</li>
+                    </ul>
+
+                    <h4>Disclaimer:</h4>
+                    <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+                    <ul>
+                        <li>limit or exclude our or your liability for death or personal injury;</li>
+                        <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+                        <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+                        <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+                    </ul>
+                </div>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button type="button">
+                            Close
+                        </Button>
+                    </DialogClose>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    )
+}
 
 export default function DashboardPage() {
   return (
@@ -157,6 +248,10 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      <footer className="mt-8 text-center text-sm text-muted-foreground">
+        MentifyAI © 2024 | <TermsAndConditionsDialog />
+      </footer>
     </>
   );
 }
