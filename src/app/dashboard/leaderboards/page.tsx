@@ -24,7 +24,7 @@ export default function LeaderboardsPage() {
   return (
     <>
       <h1 className="text-3xl font-bold">Leaderboards</h1>
-      <div className="grid gap-6 xl:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Top Earners (Monthly)</CardTitle>

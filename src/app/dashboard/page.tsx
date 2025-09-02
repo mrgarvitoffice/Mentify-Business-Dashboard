@@ -90,7 +90,7 @@ export default function DashboardPage() {
         <CarouselNext className="absolute right-4" />
       </Carousel>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {kpiData.map((kpi) => (
           <Card key={kpi.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -110,7 +110,7 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-7">
+      <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
         <Card className="lg:col-span-4">
           <CardHeader>
             <CardTitle>Next Pool Qualification</CardTitle>

@@ -31,6 +31,7 @@ import { SmartBuddy } from "@/components/chat/smart-buddy";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import React from 'react';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -43,7 +44,7 @@ const navItems = [
 function DesktopSidebar() {
     const pathname = usePathname();
     return (
-        <div className="hidden border-r bg-muted/40 md:block group/sidebar w-[5.5rem] hover:w-56 transition-all duration-300 ease-in-out">
+        <div className="hidden border-r bg-muted/40 md:flex md:flex-col group/sidebar w-[5.5rem] hover:w-56 transition-all duration-300 ease-in-out">
             <div className="flex h-full max-h-screen flex-col gap-2">
                 <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                     <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -51,7 +52,7 @@ function DesktopSidebar() {
                         <span className="text-xl transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">MentifyAI</span>
                     </Link>
                 </div>
-                <div className="flex-1 overflow-y-auto">
+                <ScrollArea className="flex-1">
                     <nav className="grid items-start gap-2 px-2 text-sm font-medium lg:px-4">
                         {navItems.map((item) => (
                             <Link
@@ -69,7 +70,7 @@ function DesktopSidebar() {
                             </Link>
                         ))}
                     </nav>
-                </div>
+                </ScrollArea>
             </div>
         </div>
     );
@@ -85,7 +86,7 @@ function MobileBottomNav() {
                         key={item.label}
                         href={item.href}
                         className={cn(
-                            "inline-flex flex-col items-center justify-center px-5 hover:bg-muted group",
+                            "inline-flex flex-col items-center justify-center px-2 hover:bg-muted group",
                             pathname === item.href ? "text-primary" : "text-muted-foreground"
                         )}
                     >
@@ -111,7 +112,6 @@ export default function DashboardLayout({
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
            <div className="w-full flex-1">
-             {/* Can add search bar here if needed */}
              <div className="md:hidden font-semibold flex items-center gap-2">
                 <Logo className="h-6 w-6 text-primary" />
                 <span>MentifyAI</span>
