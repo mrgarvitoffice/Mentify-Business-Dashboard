@@ -51,13 +51,13 @@ function MobileIncomeList() {
         <div className="space-y-3">
             {incomeBreakdown.map((item, index) => (
                 <Card key={index}>
-                    <CardHeader className="p-4">
-                        <CardTitle className="text-base">{item.category}</CardTitle>
-                        <CardDescription>{item.date}</CardDescription>
-                    </CardHeader>
-                    <CardFooter className="p-4 pt-0">
+                    <CardContent className="p-4 flex justify-between items-center">
+                        <div>
+                            <p className="font-bold">{item.category}</p>
+                            <p className="text-sm text-muted-foreground">{item.date}</p>
+                        </div>
                         <p className="text-lg font-bold font-mono ml-auto">${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
-                    </CardFooter>
+                    </CardContent>
                 </Card>
             ))}
         </div>
