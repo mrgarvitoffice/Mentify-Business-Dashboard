@@ -26,26 +26,25 @@ interface Message {
 }
 
 function SettingsPanel({ onClose }: { onClose: () => void }) {
-    const { language, setLanguage } = useLanguage();
-    const t = useLanguage().t;
+    const { language, setLanguage, t } = useLanguage();
 
     return (
         <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="font-headline text-lg">{t.settings.title}</h3>
+                <h3 className="font-headline text-lg">{t.settings.title()}</h3>
                 <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
             </div>
             <div className="space-y-4">
                 <div className="flex items-center justify-between rounded-lg border p-3">
-                    <Label htmlFor="language-switch">{t.settings.language}</Label>
+                    <Label htmlFor="language-switch">{t.settings.language()}</Label>
                     <div className="flex items-center gap-2">
-                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary')}>{t.settings.english}</Label>
+                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary')}>{t.settings.english()}</Label>
                         <Switch
                             id="language-switch"
                             checked={language === 'hi'}
                             onCheckedChange={(checked) => setLanguage(checked ? 'hi' : 'en')}
                         />
-                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary')}>{t.settings.hindi}</Label>
+                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary')}>{t.settings.hindi()}</Label>
                     </div>
                 </div>
             </div>
@@ -73,13 +72,13 @@ export function SmartBuddy() {
         setMessages([
           {
             sender: "bot",
-            text: t.smartBuddy.welcomeMessage(user.name),
+            text: t.smartBuddy.welcomeMessage({name: user.name}),
           },
         ]);
         setIsLoading(false);
       }, 1000);
     }
-  }, [isOpen, messages.length, t]);
+  }, [isOpen, messages.length, t, user.name]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -108,7 +107,7 @@ export function SmartBuddy() {
     } catch (error) {
       const errorMessage: Message = {
         sender: "bot",
-        text: t.smartBuddy.errorMessage,
+        text: t.smartBuddy.errorMessage(),
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -150,7 +149,7 @@ export function SmartBuddy() {
         <SheetHeader className="p-4 flex flex-row items-center justify-between">
           <SheetTitle className="font-headline flex items-center gap-2 text-xl">
             <Sparkles className="h-6 w-6 text-accent" />
-            {t.smartBuddy.title}
+            {t.smartBuddy.title()}
           </SheetTitle>
            <Button variant="ghost" size="icon" onClick={() => setShowSettings(true)}>
                 <Settings className="h-5 w-5" />
@@ -215,7 +214,7 @@ export function SmartBuddy() {
                 </Avatar>
                 <div className="flex items-center space-x-2 rounded-lg bg-muted p-3">
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  <span>{t.smartBuddy.thinking}...</span>
+                  <span>{t.smartBuddy.thinking()}...</span>
                 </div>
               </div>
             )}
@@ -227,7 +226,7 @@ export function SmartBuddy() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder={t.smartBuddy.placeholder}
+              placeholder={t.smartBuddy.placeholder()}
               className="pr-12"
               disabled={isLoading}
             />
