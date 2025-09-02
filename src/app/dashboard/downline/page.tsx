@@ -30,6 +30,7 @@ import { User, Briefcase, Calendar, DollarSign, ChevronDown, ZoomIn, ZoomOut, Us
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 type Member = {
   id: string;
@@ -161,7 +162,7 @@ export default function DownlinePage() {
               className="max-w-sm"
             />
             <Select value={poolFilter} onValueChange={setPoolFilter}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full md:w-[180px]">
                 <SelectValue placeholder="Filter by pool" />
               </SelectTrigger>
               <SelectContent>
@@ -184,21 +185,23 @@ export default function DownlinePage() {
             </div>
           </div>
           
-          <div
+          <ScrollArea
             ref={flowchartRef}
-            className="w-full overflow-auto rounded-lg bg-muted/20 p-8 border"
+            className="w-full rounded-lg bg-muted/20 p-8 border"
             onWheel={handleWheel}
           >
             <div 
               className="min-w-max transition-transform duration-300 ease-in-out"
-              style={{ transform: `scale(${zoom})` }}
+              style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}
             >
                <DownlineMember
                 member={downlineTree}
                 onMemberSelect={setSelectedMember}
               />
             </div>
-          </div>
+            <ScrollBar orientation="horizontal" />
+            <ScrollBar orientation="vertical" />
+          </ScrollArea>
         </CardContent>
       </Card>
 
@@ -272,4 +275,3 @@ export default function DownlinePage() {
     </>
   );
 }
-

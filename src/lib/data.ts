@@ -65,17 +65,26 @@ export const downlineTree = {
             { id: "ME-001", name: "You (Alex Partner)", pool: "Gold", businessVolume: 50000, joinDate: "2023-01-15", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d", children: [
                 { id: "DP-101", name: "John Smith", pool: "Silver", businessVolume: 20000, joinDate: "2023-03-22", avatar: "https://i.pravatar.cc/150?u=dp101", children: [
                     { id: "DP-201", name: "Jane Doe", pool: "Bronze", businessVolume: 5000, joinDate: "2023-05-10", avatar: "https://i.pravatar.cc/150?u=dp201", children: [] },
-                    { id: "DP-202", name: "Peter Jones", pool: "Bronze", businessVolume: 4500, joinDate: "2023-06-01", avatar: "https://i.pravatar.cc/150?u=dp202", children: [] },
                 ]},
                 { id: "DP-102", name: "Sarah Miller", pool: "Silver", businessVolume: 18000, joinDate: "2023-04-11", avatar: "https://i.pravatar.cc/150?u=dp102", children: [
                      { id: "DP-203", name: "Chris Green", pool: "Bronze", businessVolume: 6250, joinDate: "2023-07-20", avatar: "https://i.pravatar.cc/150?u=dp203", children: []},
                 ]},
             ]},
-            { id: "GL-002", name: "David King", pool: "Gold", businessVolume: 60000, joinDate: "2022-08-05", avatar: "https://i.pravatar.cc/150?u=gl002", children: [] },
+            { id: "GL-002", name: "David King", pool: "Gold", businessVolume: 60000, joinDate: "2022-08-05", avatar: "https://i.pravatar.cc/150?u=gl002", children: [
+                 { id: "DP-103", name: "Tom Wilson", pool: "Silver", businessVolume: 22000, joinDate: "2022-09-01", avatar: "https://i.pravatar.cc/150?u=dp103", children: [
+                    { id: "DP-204", name: "Lisa Brown", pool: "Bronze", businessVolume: 7000, joinDate: "2022-10-10", avatar: "https://i.pravatar.cc/150?u=dp204", children: [] },
+                 ]},
+            ]},
         ]},
-        { id: "PL-002", name: "Laura Chen", pool: "Platinum", businessVolume: 120000, joinDate: "2021-09-12", avatar: "https://i.pravatar.cc/150?u=pl002", children: [] },
+        { id: "PL-002", name: "Laura Chen", pool: "Platinum", businessVolume: 120000, joinDate: "2021-09-12", avatar: "https://i.pravatar.cc/150?u=pl002", children: [
+            { id: "GL-003", name: "Kevin Hall", pool: "Gold", businessVolume: 75000, joinDate: "2021-11-05", avatar: "https://i.pravatar.cc/150?u=gl003", children: [] },
+            { id: "GL-004", name: "Grace Adams", pool: "Gold", businessVolume: 80000, joinDate: "2022-01-25", avatar: "https://i.pravatar.cc/150?u=gl004", children: [] },
+        ]},
     ]},
-    { id: "DI-002", name: "Brian Lee", pool: "Diamond", businessVolume: 280000, joinDate: "2020-11-30", avatar: "https://i.pravatar.cc/150?u=di002", children: []},
+    { id: "DI-002", name: "Brian Lee", pool: "Diamond", businessVolume: 280000, joinDate: "2020-11-30", avatar: "https://i.pravatar.cc/150?u=di002", children: [
+        { id: "PL-003", name: "Emma White", pool: "Platinum", businessVolume: 150000, joinDate: "2021-02-18", avatar: "https://i.pravatar.cc/150?u=pl003", children: [] },
+    ]},
+    { id: "DI-003", name: "Olivia Martin", pool: "Diamond", businessVolume: 220000, joinDate: "2021-05-20", avatar: "https://i.pravatar.cc/150?u=di003", children: [] },
   ],
 };
 
@@ -134,5 +143,6 @@ export const mockDownlineActivityForAI = JSON.stringify({
   topPerformer: { id: "DP-102", name: "Sarah Miller", monthlyBV: 2500 },
   nearPromotion: { id: "DP-101", name: "John Smith", bvToNextPool: 500 },
 });
+
 
 
