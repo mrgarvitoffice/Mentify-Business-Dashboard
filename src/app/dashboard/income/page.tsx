@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
@@ -8,7 +7,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -80,8 +78,7 @@ function MobileIncomeList() {
 
 export default function IncomePage() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
-      <div className="space-y-3 sm:space-y-4 lg:space-y-6 px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-6 max-w-7xl mx-auto">
+    <>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">Income Tracking</h1>
           <Button className="w-full sm:w-auto text-sm sm:text-base shrink-0">
@@ -161,7 +158,6 @@ export default function IncomePage() {
               </div>
           </CardContent>
         </Card>
-      </div>
-    </div>
+    </>
   );
 }
