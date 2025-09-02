@@ -48,7 +48,7 @@ function DesktopSidebar() {
                 <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                     <Link href="/" className="flex items-center gap-2 font-semibold">
                         <Logo className="h-6 w-6 text-primary flex-shrink-0" />
-                        <span className="text-xl transition-opacity duration-300 opacity-100 group-hover/sidebar:opacity-100">MentifyAI</span>
+                        <span className="text-xl transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">MentifyAI</span>
                     </Link>
                 </div>
                 <div className="flex-1 overflow-y-auto">
