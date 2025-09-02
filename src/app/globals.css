@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background-start-rgb: 250, 246, 240; /* Warmer Beige Start */
+    --background-start-rgb: 245, 240, 235; /* Warmer Beige Start */
     --background-end-rgb: 253, 252, 250;   /* Lighter Beige End */
     --background: 34 43% 96%; /* HSL for light beige */
     --foreground: 20 15% 25%; /* Darker, softer black for text */
@@ -12,7 +12,7 @@
     --card-foreground: 20 15% 25%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 15% 25%;
-    --primary: 205 65% 55%; /* Softer blue, reduced saturation/opacity by ~10% */
+    --primary: 205 55% 55%; /* Softer blue, reduced saturation */
     --primary-foreground: 0 0% 100%;
     --secondary: 175 50% 50%; /* Muted Teal */
     --secondary-foreground: 0 0% 100%;
@@ -24,8 +24,8 @@
     --destructive-foreground: 0 0% 98%;
     --border: 34 25% 90%; /* Beige-toned border */
     --input: 34 25% 90%;
-    --ring: 205 65% 55%;
-    --chart-1: 205 65% 55%;
+    --ring: 205 55% 55%;
+    --chart-1: 205 55% 55%;
     --chart-2: 175 50% 50%;
     --chart-3: 0 65% 60%;
     --chart-4: 25 80% 55%;
