@@ -1,1 +1,5 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/performance-prediction-downline-upgrade-alerts.ts';
+import '@/ai/flows/smart-buddy-personalized-recommendations.ts';
