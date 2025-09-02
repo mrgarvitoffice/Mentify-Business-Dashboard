@@ -56,6 +56,8 @@ export const incomeBreakdown = [
   { category: "Direct Bonus", amount: 1100.00, date: "2024-04-30" },
   { category: "Pool Bonus", amount: 1450.00, date: "2024-04-30" },
   { category: "Upline Matching Bonus", amount: 450.00, date: "2024-04-30" },
+  { category: "Direct Bonus", amount: 1050.00, date: "2024-03-31" },
+  { category: "Pool Bonus", amount: 1200.00, date: "2024-03-31" },
 ];
 
 export const downlineTree = {
@@ -105,28 +107,28 @@ export const marketingAssets = [
 
 
 export const topEarners = [
-  { rank: 1, name: "Jessica Gold", id: "JG-001", income: 15200, pool: "Crown Diamond" },
-  { rank: 2, name: "Mike Diamond", id: "MD-002", income: 12800, pool: "Diamond" },
-  { rank: 3, name: "Sarah Platinum", id: "SP-003", income: 9500, pool: "Platinum" },
-  { rank: 4, name: "You (Alex Partner)", id: "ME-001", income: 3250, pool: "Gold" },
-  { rank: 5, name: "Chris Silver", id: "CS-004", income: 2100, pool: "Silver" },
+  { rank: 1, name: "Jessica Gold", id: "JG-001", income: 15200, pool: "Crown Diamond", avatar: "https://i.pravatar.cc/150?u=cd001" },
+  { rank: 2, name: "Mike Diamond", id: "MD-002", income: 12800, pool: "Diamond", avatar: "https://i.pravatar.cc/150?u=di001" },
+  { rank: 3, name: "Sarah Platinum", id: "SP-003", income: 9500, pool: "Platinum", avatar: "https://i.pravatar.cc/150?u=pl001" },
+  { rank: 4, name: "You (Alex Partner)", id: "ME-001", income: 3250, pool: "Gold", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d" },
+  { rank: 5, name: "David King", id: "DK-004", income: 2100, pool: "Gold", avatar: "https://i.pravatar.cc/150?u=gl002" },
 ];
 
 export const topRecruiters = [
-  { rank: 1, name: "Recruiter Ron", id: "RR-001", recruits: 25, pool: "Platinum" },
-  { rank: 2, name: "Builder Betty", id: "BB-002", recruits: 21, pool: "Gold" },
-  { rank: 3, name: "You (Alex Partner)", id: "ME-001", recruits: 18, pool: "Gold" },
-  { rank: 4, name: "Networker Nancy", id: "NN-003", recruits: 15, pool: "Silver" },
-  { rank: 5, name: "Connector Carl", id: "CC-004", recruits: 12, pool: "Silver" },
+  { rank: 1, name: "Laura Chen", id: "LC-001", recruits: 25, pool: "Platinum", avatar: "https://i.pravatar.cc/150?u=pl002" },
+  { rank: 2, name: "Brian Lee", id: "BL-002", recruits: 21, pool: "Diamond", avatar: "https://i.pravatar.cc/150?u=di002" },
+  { rank: 3, name: "You (Alex Partner)", id: "ME-001", recruits: 18, pool: "Gold", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d" },
+  { rank: 4, name: "Emma White", id: "EW-003", recruits: 15, pool: "Platinum", avatar: "https://i.pravatar.cc/150?u=pl003" },
+  { rank: 5, name: "George King", id: "GK-004", recruits: 12, pool: "Platinum", avatar: "https://i.pravatar.cc/150?u=pl004" },
 ];
 
 export const poolColors: { [key: string]: string } = {
-  'Bronze': 'bg-[#CD7F32]/20 text-[#CD7F32] border-[#CD7F32]/50',
-  'Silver': 'bg-[#C0C0C0]/20 text-[#A9A9A9] border-[#C0C0C0]/50',
-  'Gold': 'bg-[#FFD700]/20 text-[#FFD700] border-[#FFD700]/50',
-  'Platinum': 'bg-[#E5E4E2]/20 text-[#8A8D90] border-[#E5E4E2]/50',
-  'Diamond': 'bg-[#B9F2FF]/20 text-[#67E3FF] border-[#B9F2FF]/50',
-  'Crown Diamond': 'bg-[#800080]/20 text-[#C077C0] border-[#800080]/50',
+  'Bronze': 'bg-orange-200/50 text-orange-600 border-orange-400',
+  'Silver': 'bg-slate-200/50 text-slate-600 border-slate-400',
+  'Gold': 'bg-yellow-200/50 text-yellow-600 border-yellow-400',
+  'Platinum': 'bg-cyan-200/50 text-cyan-600 border-cyan-400',
+  'Diamond': 'bg-sky-200/50 text-sky-600 border-sky-400',
+  'Crown Diamond': 'bg-violet-200/50 text-violet-600 border-violet-400',
 };
 
 // Data for AI flows
@@ -148,7 +150,3 @@ export const mockDownlineActivityForAI = JSON.stringify({
   topPerformer: { id: "DP-102", name: "Sarah Miller", monthlyBV: 2500 },
   nearPromotion: { id: "DP-101", name: "John Smith", bvToNextPool: 500 },
 });
-
-
-
-

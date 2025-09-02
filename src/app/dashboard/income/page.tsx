@@ -8,6 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -21,7 +22,47 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
+function DesktopIncomeTable() {
+    return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Category</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {incomeBreakdown.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell className="font-medium">{item.category}</TableCell>
+                <TableCell>{item.date}</TableCell>
+                <TableCell className="text-right font-mono">${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+    );
+}
+
+function MobileIncomeList() {
+    return (
+        <div className="space-y-3">
+            {incomeBreakdown.map((item, index) => (
+                <Card key={index}>
+                    <CardHeader className="p-4">
+                        <CardTitle className="text-base">{item.category}</CardTitle>
+                        <CardDescription>{item.date}</CardDescription>
+                    </CardHeader>
+                    <CardFooter className="p-4 pt-0">
+                        <p className="text-lg font-bold font-mono ml-auto">${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                    </CardFooter>
+                </Card>
+            ))}
+        </div>
+    );
+}
 
 export default function IncomePage() {
   return (
@@ -40,7 +81,7 @@ export default function IncomePage() {
           <CardDescription>Your income over the last 12 months.</CardDescription>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={incomeChartConfig} className="h-[300px] w-full">
+          <ChartContainer config={incomeChartConfig} className="h-[250px] md:h-[300px] w-full">
             <BarChart data={incomeChartData} accessibilityLayer>
               <CartesianGrid vertical={false} />
               <XAxis
@@ -55,7 +96,7 @@ export default function IncomePage() {
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={(value) => `$${value/1000}k`}
               />
               <ChartTooltip
                 cursor={{ fill: 'hsl(var(--muted))' }}
@@ -77,31 +118,16 @@ export default function IncomePage() {
           <CardDescription>Detailed view of your recent earnings by category.</CardDescription>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="w-full whitespace-nowrap">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Category</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                  <TableHead>Date</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {incomeBreakdown.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{item.category}</TableCell>
-                    <TableCell className="text-right">${item.amount.toFixed(2)}</TableCell>
-                    <TableCell>{item.date}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-             <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+            {/* Desktop View */}
+            <div className="hidden md:block">
+                <DesktopIncomeTable />
+            </div>
+            {/* Mobile View */}
+            <div className="md:hidden">
+                <MobileIncomeList />
+            </div>
         </CardContent>
       </Card>
     </>
   );
 }
-
-    
