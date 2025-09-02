@@ -113,7 +113,6 @@ export default function IncomePage() {
         </Button>
       </div>
 
-      {/* Income Chart */}
       <Card>
         <CardHeader>
           <CardTitle>Monthly Income Trend</CardTitle>
@@ -156,7 +155,6 @@ export default function IncomePage() {
         </CardContent>
       </Card>
 
-      {/* Income Breakdown */}
       <Card>
         <CardHeader>
           <CardTitle>Income Breakdown</CardTitle>
