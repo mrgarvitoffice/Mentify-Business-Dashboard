@@ -97,17 +97,17 @@ function DownlineMember({
       {isExpanded && hasChildren && (
         <>
           {/* Vertical line from parent */}
-          <div className="mt-5 h-8 w-px bg-border/80" />
+          <div className="mt-5 h-8 w-px bg-primary/30" />
           
           <div className="flex justify-center">
             {/* Horizontal line */}
-            <div className="absolute h-px w-full bg-border/80" />
+            <div className="absolute h-px w-full bg-primary/30" />
             
             <div className="flex w-full justify-around space-x-4 pt-8">
               {member.children.map((child) => (
                 <div key={child.id} className="relative flex flex-col items-center">
                   {/* Vertical line to child */}
-                  <div className="absolute -top-8 h-8 w-px bg-border/80" />
+                  <div className="absolute -top-8 h-8 w-px bg-primary/30" />
                   <DownlineMember
                     member={child}
                     level={level + 1}
@@ -221,7 +221,7 @@ export default function DownlinePage() {
                 </div>
             </div>
             
-            <DialogHeader className="pt-16 text-center">
+            <DialogHeader className="pt-16 text-center items-center">
               <DialogTitle className="text-2xl">
                 {selectedMember.name}
               </DialogTitle>

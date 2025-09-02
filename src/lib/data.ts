@@ -82,9 +82,14 @@ export const downlineTree = {
         ]},
     ]},
     { id: "DI-002", name: "Brian Lee", pool: "Diamond", businessVolume: 280000, joinDate: "2020-11-30", avatar: "https://i.pravatar.cc/150?u=di002", children: [
-        { id: "PL-003", name: "Emma White", pool: "Platinum", businessVolume: 150000, joinDate: "2021-02-18", avatar: "https://i.pravatar.cc/150?u=pl003", children: [] },
+        { id: "PL-003", name: "Emma White", pool: "Platinum", businessVolume: 150000, joinDate: "2021-02-18", avatar: "https://i.pravatar.cc/150?u=pl003", children: [
+          { id: "GL-005", name: "Frank Wright", pool: "Gold", businessVolume: 65000, joinDate: "2021-11-05", avatar: "https://i.pravatar.cc/150?u=gl005", children: [] },
+          { id: "GL-006", name: "Helen Clark", pool: "Gold", businessVolume: 82000, joinDate: "2022-01-25", avatar: "https://i.pravatar.cc/150?u=gl006", children: [] },
+        ] },
+        { id: "PL-004", name: "George King", pool: "Platinum", businessVolume: 130000, joinDate: "2021-02-18", avatar: "https://i.pravatar.cc/150?u=pl004", children: [
+          { id: "GL-007", name: "Ivy Green", pool: "Gold", businessVolume: 72000, joinDate: "2021-11-05", avatar: "https://i.pravatar.cc/150?u=gl007", children: [] },
+        ] },
     ]},
-    { id: "DI-003", name: "Olivia Martin", pool: "Diamond", businessVolume: 220000, joinDate: "2021-05-20", avatar: "https://i.pravatar.cc/150?u=di003", children: [] },
   ],
 };
 
@@ -143,6 +148,7 @@ export const mockDownlineActivityForAI = JSON.stringify({
   topPerformer: { id: "DP-102", name: "Sarah Miller", monthlyBV: 2500 },
   nearPromotion: { id: "DP-101", name: "John Smith", bvToNextPool: 500 },
 });
+
 
 
 
