@@ -109,7 +109,7 @@ export default function DashboardLayout({
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
       <DesktopSidebar />
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1 overflow-y-auto">
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
            <div className="w-full flex-1">
              <div className="md:hidden font-semibold flex items-center gap-2">
@@ -144,7 +144,7 @@ export default function DashboardLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main key={language} className="flex flex-col flex-1 overflow-y-auto bg-background">
+        <main key={language} className="bg-background">
             <div className="flex flex-1 flex-col gap-4 lg:gap-6 p-4 lg:p-6 pb-20 md:pb-6">
                 {children}
             </div>
