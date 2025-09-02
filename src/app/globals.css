@@ -4,32 +4,32 @@
 
 @layer base {
   :root {
-    --background-start-rgb: 245, 249, 255;
+    --background-start-rgb: 243, 244, 246;
     --background-end-rgb: 255, 255, 255;
-    --background: 220 20% 98%;
-    --foreground: 225 10% 8%; /* Dark Navy Text */
+    --background: 0 0% 100%; /* Crisp white */
+    --foreground: 224 71% 4%; /* Dark Navy Text */
     --card: 0 0% 100%;
-    --card-foreground: 225 10% 8%;
+    --card-foreground: 224 71% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 225 10% 8%;
+    --popover-foreground: 224 71% 4%;
     --primary: 221 83% 53%; /* Royal Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220 9.1% 43.1%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 9.1% 43.1%;
-    --accent: 338 100% 64%; /* Crimson Pink */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 338 91% 65%; /* Crimson Pink */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 216 89% 95%;
-    --input: 220 13% 91%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
     --radius: 0.75rem;
     --chart-1: 221 83% 53%; /* Royal Blue */
-    --chart-2: 338 100% 64%; /* Crimson Pink */
-    --chart-3: 162 100% 39%; /* Emerald Green */
-    --chart-4: 45 100% 62%;  /* Gold */
+    --chart-2: 338 91% 65%; /* Crimson Pink */
+    --chart-3: 151 83% 34%; /* Emerald Green */
+    --chart-4: 45 93% 47%;  /* Gold */
     --chart-5: 27 87% 67%;
   }
 
