@@ -165,9 +165,6 @@ export function SmartBuddy() {
             <Sparkles className="h-6 w-6 text-accent" />
             {t.smartBuddy.title()}
           </SheetTitle>
-           <Button variant="ghost" size="icon" onClick={() => setShowSettings(s => !s)}>
-                <Settings className="h-5 w-5" />
-            </Button>
         </SheetHeader>
         <ScrollArea className="flex-1 px-4" ref={scrollAreaRef}>
           <div className="space-y-4 py-4">

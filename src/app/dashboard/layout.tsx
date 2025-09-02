@@ -125,9 +125,13 @@ function DashboardLayoutContent({
                </div>
              </div>
             <ThemeSwitcher />
-            <Button variant="outline" size="icon" className="h-8 w-8">
+            <Button variant="outline" size="icon" className="h-8 w-8 relative">
               <Bell className="h-4 w-4" />
               <span className="sr-only">Toggle notifications</span>
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -143,7 +147,9 @@ function DashboardLayoutContent({
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={openSettings}>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="mailto:support@mentify.ai">Support</a>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/">Logout</Link>
