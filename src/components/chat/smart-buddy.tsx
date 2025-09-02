@@ -22,48 +22,14 @@ import { useLanguage } from "@/hooks/use-language";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useSmartBuddy } from "@/hooks/use-smart-buddy";
-
 
 interface Message {
   sender: "user" | "bot";
   text: string;
 }
 
-function SettingsPanel({ onClose }: { onClose: () => void }) {
-    const { language, setLanguage, t } = useLanguage();
-
-    return (
-        <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">{t.settings.title()}</h3>
-                <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
-            </div>
-            <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg border p-3">
-                    <Label htmlFor="language-switch" className="flex items-center gap-2"><CaseSensitive className="h-4 w-4"/> {t.settings.language()}</Label>
-                    <div className="flex items-center gap-2">
-                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary font-bold')}>{t.settings.english()}</Label>
-                        <Switch
-                            id="language-switch"
-                            checked={language === 'hi'}
-                            onCheckedChange={(checked) => setLanguage(checked ? 'hi' : 'en')}
-                        />
-                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary font-bold')}>{t.settings.hindi()}</Label>
-                    </div>
-                </div>
-                 <div className="space-y-2 rounded-lg border p-3">
-                     <Label className="flex items-center gap-2"><Mail className="h-4 w-4"/> {t.settings.support()}</Label>
-                     <p className="text-sm text-muted-foreground">support@mentify.ai</p>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-
 export function SmartBuddy() {
-  const { isOpen, setIsOpen, showSettings, setShowSettings } = useSmartBuddy();
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -97,11 +63,6 @@ export function SmartBuddy() {
     }
   }, [messages]);
   
-  useEffect(() => {
-    if(!isOpen) {
-        setShowSettings(false);
-    }
-  }, [isOpen, setShowSettings]);
 
   const handleSend = async () => {
     if (input.trim() === "") return;
@@ -159,7 +120,6 @@ export function SmartBuddy() {
         </Button>
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col p-0 sm:max-w-lg">
-        {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
         <SheetHeader className="p-4 flex flex-row items-center justify-between border-b">
           <SheetTitle className="flex items-center gap-2 text-xl">
             <Sparkles className="h-6 w-6 text-accent" />
@@ -232,23 +192,23 @@ export function SmartBuddy() {
           </div>
         </ScrollArea>
         <div className="border-t bg-background p-4">
-          <div className="relative">
+          <div className="flex items-center gap-2 rounded-full bg-muted p-1">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder={t.smartBuddy.placeholder()}
-              className="pr-12"
+              className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               disabled={isLoading}
             />
             <Button
               type="submit"
               size="icon"
-              className="absolute right-1 top-1/2 h-8 w-8 -translate-y-1/2"
+              className="h-10 w-10 rounded-full"
               onClick={handleSend}
-              disabled={isLoading}
+              disabled={isLoading || !input.trim()}
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </Button>
           </div>
         </div>

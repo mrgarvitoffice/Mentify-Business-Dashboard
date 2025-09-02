@@ -37,6 +37,12 @@ export const promotions = [
     { id: 3, title: 'Limited Time Offer: Fast Start Pack', description: 'Get the new Fast Start Pack with exclusive marketing materials for 20% off.', image: 'https://picsum.photos/1200/400?random=3', dataAiHint: 'product launch' },
 ];
 
+export const notifications = [
+    { id: 1, title: 'New Downline Member!', description: 'John Smith just joined your team.'},
+    { id: 2, title: 'Pool Upgrade Alert', description: 'Sarah Miller is close to reaching the Gold pool.'},
+    { id: 3, title: 'Commission Paid', description: 'Your monthly commission of $3,250 has been paid.'},
+]
+
 export const incomeChartData = [
   { month: "Jan", income: 2200 }, { month: "Feb", income: 2500 },
   { month: "Mar", income: 2300 }, { month: "Apr", income: 2800 },

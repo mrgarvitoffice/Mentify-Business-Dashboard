@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/hooks/use-language';
+import { FontSizeProvider } from '@/hooks/use-font-size';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
@@ -31,10 +32,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>
-            {children}
-            <Toaster />
-          </LanguageProvider>
+            <LanguageProvider>
+                <FontSizeProvider>
+                    {children}
+                    <Toaster />
+                </FontSizeProvider>
+            </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
