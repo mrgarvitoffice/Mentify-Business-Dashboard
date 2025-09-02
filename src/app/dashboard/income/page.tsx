@@ -138,7 +138,7 @@ export default function IncomePage() {
                 axisLine={false}
               />
               <YAxis
-                stroke="#88.888"
+                stroke="#888888"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
