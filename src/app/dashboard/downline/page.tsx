@@ -25,7 +25,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { downlineTree, poolColors } from "@/lib/data";
-import { User, ChevronRight, Briefcase, Calendar, DollarSign } from "lucide-react";
+import { User, ChevronRight, Briefcase, Calendar, DollarSign, ChevronDown } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
@@ -42,80 +42,73 @@ function DownlineMember({
   member,
   level = 0,
   onMemberSelect,
-  isLast,
 }: {
   member: Member;
   level?: number;
   onMemberSelect: (member: Member) => void;
-  isLast: boolean;
 }) {
   const [isExpanded, setIsExpanded] = useState(level < 2);
   const hasChildren = member.children && member.children.length > 0;
 
   return (
-    <div className="relative pl-8">
-      {/* Connector lines */}
-      <div
-        className={cn(
-          "absolute left-4 top-0 w-px bg-border",
-          isLast ? "h-7" : "h-full"
-        )}
-      ></div>
-      <div className="absolute left-4 top-7 h-px w-4 bg-border"></div>
-
+    <div className="flex flex-col items-center">
       {/* Member Card */}
-      <div className="relative flex items-center gap-3 py-2">
-        {hasChildren && (
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="absolute -left-2.5 top-5 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-background ring-2 ring-border hover:bg-muted"
-          >
-            <ChevronRight
-              className={cn(
-                "h-4 w-4 transition-transform",
-                isExpanded && "rotate-90"
-              )}
-            />
-          </button>
-        )}
-
-        <div
+      <div className="relative flex flex-col items-center">
+         <div
           onDoubleClick={() => onMemberSelect(member)}
-          className="flex w-full cursor-pointer items-center gap-3 rounded-lg border bg-card p-3 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
+          className="z-10 flex min-w-48 cursor-pointer flex-col items-center gap-2 rounded-lg border bg-card p-3 text-center shadow-md transition-all hover:border-primary/50 hover:shadow-xl hover:-translate-y-1"
         >
-          <Avatar className="h-10 w-10">
+          <Avatar className="h-12 w-12">
             <AvatarFallback className="bg-muted">
-              <User />
+              <User className="h-6 w-6"/>
             </AvatarFallback>
           </Avatar>
           <div className="flex-1">
-            <p className="font-medium text-foreground">{member.name}</p>
+            <p className="font-semibold text-foreground">{member.name}</p>
             <p className="text-xs text-muted-foreground">ID: {member.id}</p>
           </div>
           <div
             className={cn(
-              "text-xs font-semibold px-2 py-1 rounded-full border",
+              "text-xs font-bold px-2.5 py-1 rounded-full border",
               poolColors[member.pool] || "bg-gray-200 text-gray-800"
             )}
           >
             {member.pool}
           </div>
         </div>
+
+        {/* Expand/Collapse Button */}
+        {hasChildren && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="absolute -bottom-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-background ring-2 ring-border transition-transform hover:bg-muted"
+          >
+            {isExpanded ? <ChevronRight className="h-5 w-5 -rotate-90"/> : <ChevronDown className="h-5 w-5"/>}
+          </button>
+        )}
       </div>
 
       {/* Children */}
       {isExpanded && hasChildren && (
-        <div className="relative">
-          {member.children.map((child, index) => (
-            <DownlineMember
-              key={child.id}
-              member={child}
-              level={level + 1}
-              onMemberSelect={onMemberSelect}
-              isLast={index === member.children.length - 1}
-            />
-          ))}
-        </div>
+        <>
+          {/* Vertical connector line from parent */}
+          <div className="h-8 w-px bg-border"></div>
+          {/* Horizontal connector line */}
+          <div className="h-px w-full bg-border"></div>
+          <div className="flex w-full justify-around pt-8">
+            {member.children.map((child, index) => (
+              <div key={child.id} className="relative flex flex-col items-center">
+                {/* Vertical connector line to child */}
+                <div className="absolute -top-8 h-8 w-px bg-border"></div>
+                <DownlineMember
+                  member={child}
+                  level={level + 1}
+                  onMemberSelect={onMemberSelect}
+                />
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
@@ -132,7 +125,7 @@ export default function DownlinePage() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Downline Genealogy</h1>
+      <h1 className="text-3xl font-bold">Downline Flowchart</h1>
 
       <Card>
         <CardHeader>
@@ -165,12 +158,13 @@ export default function DownlinePage() {
             </Select>
           </div>
 
-          <div className="rounded-lg bg-muted/30 p-4">
-            <DownlineMember
-              member={downlineTree}
-              onMemberSelect={setSelectedMember}
-              isLast={true}
-            />
+          <div className="w-full overflow-x-auto rounded-lg bg-muted/30 p-8">
+            <div className="min-w-[800px]">
+               <DownlineMember
+                member={downlineTree}
+                onMemberSelect={setSelectedMember}
+              />
+            </div>
           </div>
         </CardContent>
       </Card>
