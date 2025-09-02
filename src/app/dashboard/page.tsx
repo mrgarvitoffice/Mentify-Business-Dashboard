@@ -19,12 +19,13 @@ import { ArrowUp, Lightbulb } from "lucide-react";
 import { kpiData, poolData, achievements, promotions, user } from "@/lib/data";
 import { getAlertsAction } from "@/app/actions";
 import { SmartBuddy } from "@/components/chat/smart-buddy";
+import { cn } from "@/lib/utils";
 
 async function OpportunityAlerts() {
   const { alerts } = await getAlertsAction();
 
   return (
-    <Card>
+    <Card className="lg:col-span-3">
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
           <Lightbulb className="h-6 w-6 text-accent" />
@@ -66,7 +67,7 @@ export default function DashboardPage() {
         <CarouselContent>
           {promotions.map((promo) => (
             <CarouselItem key={promo.id}>
-              <Card className="overflow-hidden">
+              <Card className="overflow-hidden border-0">
                 <div className="relative h-48 w-full">
                   <Image
                     src={promo.image}
@@ -97,7 +98,7 @@ export default function DashboardPage() {
               <kpi.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{kpi.value}</div>
+              <div className="font-mono text-2xl font-bold">{kpi.value}</div>
               {kpi.change && (
                 <p className="text-xs text-muted-foreground flex items-center">
                   <ArrowUp className="h-4 w-4 text-green-500 mr-1"/>
@@ -119,12 +120,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between text-sm font-medium">
-              <span>Current Pool: <Badge variant="outline" className={user.poolColor}>{poolData.currentPool}</Badge></span>
-              <span>Next Pool: <Badge variant="outline">{poolData.nextPool}</Badge></span>
+              <span>Current Pool: <Badge variant="outline" className={cn("border-0", user.poolColor)}>{poolData.currentPool}</Badge></span>
+              <span>Next Pool: <Badge variant="outline" className="border-0">{poolData.nextPool}</Badge></span>
             </div>
             <Progress value={poolData.progress} aria-label={`${poolData.progress}% to next pool`} />
             <p className="text-center text-sm text-muted-foreground">
-              You need <span className="font-bold text-primary">${poolData.bvForNextPool.toLocaleString()}</span> more Business Volume to qualify.
+              You need <span className="font-mono font-bold text-primary">${poolData.bvForNextPool.toLocaleString()}</span> more Business Volume to qualify.
             </p>
           </CardContent>
         </Card>
@@ -140,7 +141,7 @@ export default function DashboardPage() {
             <ul className="space-y-3">
               {achievements.map((ach) => (
                 <li key={ach.title} className="flex items-center gap-3">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg bg-muted ${ach.color}`}>
+                  <div className={cn(`flex h-10 w-10 items-center justify-center rounded-lg bg-muted`, ach.color)}>
                     <ach.icon className="h-6 w-6" />
                   </div>
                   <div>

@@ -9,11 +9,24 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-xl border bg-card/60 text-card-foreground shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out hover:shadow-primary/20 dark:bg-card/70 dark:shadow-black/20",
+      "rounded-xl bg-card/60 text-card-foreground transition-all duration-300 ease-in-out",
+      "dark:bg-card/70 dark:backdrop-blur-xl",
+      "dark:border dark:border-white/10 dark:shadow-2xl dark:shadow-black/40",
+      "light:bg-white/80 light:shadow-lg light:shadow-slate-200/50 light:border-slate-200",
+      "relative group",
+      "hover:shadow-primary/20 hover:-translate-y-1",
       className
     )}
     {...props}
-  />
+  >
+    <div className={cn("absolute -inset-[1px] rounded-xl border border-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100", 
+        "dark:bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.15)_0%,transparent_80%)]",
+        "dark:[box-shadow:0_0_2px_0_hsl(var(--primary)),inset_0_0_2px_0_hsl(var(--primary))]"
+    )} />
+    <div className="relative h-full w-full">
+      {props.children}
+    </div>
+  </div>
 ))
 Card.displayName = "Card"
 

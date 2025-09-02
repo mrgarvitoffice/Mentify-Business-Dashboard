@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         headline: ['"Space Grotesk"', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
