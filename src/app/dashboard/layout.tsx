@@ -109,7 +109,7 @@ export default function DashboardLayout({
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
       <DesktopSidebar />
-      <div className="flex flex-col">
+      <div className="flex flex-col max-h-screen">
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
            <div className="w-full flex-1">
              <div className="md:hidden font-semibold flex items-center gap-2">
@@ -144,9 +144,11 @@ export default function DashboardLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main key={language} className="flex flex-1 flex-col gap-4 bg-background p-4 pb-20 lg:gap-6 lg:p-6 md:pb-6">
-          {children}
-        </main>
+        <ScrollArea className="flex-1">
+          <main key={language} className="flex flex-col gap-4 bg-background p-4 lg:gap-6 lg:p-6 pb-20 md:pb-6">
+            {children}
+          </main>
+        </ScrollArea>
         <SmartBuddy />
       </div>
        <MobileBottomNav />
