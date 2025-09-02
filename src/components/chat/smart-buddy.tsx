@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Bot, Send, Loader2, Sparkles, User, Volume2, Play } from "lucide-react";
+import { Bot, Send, Loader2, Sparkles, User, Volume2, Settings, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -16,11 +16,43 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { getBuddyRecommendationsAction, textToSpeechAction } from "@/app/actions";
 import { user } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/hooks/use-language";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 interface Message {
   sender: "user" | "bot";
   text: string;
 }
+
+function SettingsPanel({ onClose }: { onClose: () => void }) {
+    const { language, setLanguage } = useLanguage();
+    const t = useLanguage().t;
+
+    return (
+        <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
+            <div className="flex items-center justify-between mb-4">
+                <h3 className="font-headline text-lg">{t.settings.title}</h3>
+                <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
+            </div>
+            <div className="space-y-4">
+                <div className="flex items-center justify-between rounded-lg border p-3">
+                    <Label htmlFor="language-switch">{t.settings.language}</Label>
+                    <div className="flex items-center gap-2">
+                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary')}>{t.settings.english}</Label>
+                        <Switch
+                            id="language-switch"
+                            checked={language === 'hi'}
+                            onCheckedChange={(checked) => setLanguage(checked ? 'hi' : 'en')}
+                        />
+                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary')}>{t.settings.hindi}</Label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 
 export function SmartBuddy() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +60,10 @@ export function SmartBuddy() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTtsLoading, setIsTtsLoading] = useState<string | null>(null);
+  const [showSettings, setShowSettings] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { t } = useLanguage();
 
 
   useEffect(() => {
@@ -39,13 +73,13 @@ export function SmartBuddy() {
         setMessages([
           {
             sender: "bot",
-            text: `Hello ${user.name}! I'm your Smart Buddy. How can I help you grow your business today?`,
+            text: t.smartBuddy.welcomeMessage(user.name),
           },
         ]);
         setIsLoading(false);
       }, 1000);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, t]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -74,7 +108,7 @@ export function SmartBuddy() {
     } catch (error) {
       const errorMessage: Message = {
         sender: "bot",
-        text: "Sorry, something went wrong. Please try again.",
+        text: t.smartBuddy.errorMessage,
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -106,17 +140,21 @@ export function SmartBuddy() {
       <SheetTrigger asChild>
         <Button
           variant="default"
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90"
+          className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 z-50"
         >
           <Bot className="h-8 w-8 text-primary-foreground" />
         </Button>
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col p-0 sm:max-w-lg">
-        <SheetHeader className="p-4">
+        {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
+        <SheetHeader className="p-4 flex flex-row items-center justify-between">
           <SheetTitle className="font-headline flex items-center gap-2 text-xl">
             <Sparkles className="h-6 w-6 text-accent" />
-            Smart Buddy
+            {t.smartBuddy.title}
           </SheetTitle>
+           <Button variant="ghost" size="icon" onClick={() => setShowSettings(true)}>
+                <Settings className="h-5 w-5" />
+            </Button>
         </SheetHeader>
         <ScrollArea className="flex-1 px-4" ref={scrollAreaRef}>
           <div className="space-y-4 py-4">
@@ -177,7 +215,7 @@ export function SmartBuddy() {
                 </Avatar>
                 <div className="flex items-center space-x-2 rounded-lg bg-muted p-3">
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  <span>Thinking...</span>
+                  <span>{t.smartBuddy.thinking}...</span>
                 </div>
               </div>
             )}
@@ -189,7 +227,7 @@ export function SmartBuddy() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Ask for recommendations..."
+              placeholder={t.smartBuddy.placeholder}
               className="pr-12"
               disabled={isLoading}
             />

@@ -1,0 +1,15 @@
+{
+    "smartBuddy": {
+        "title": "Smart Buddy",
+        "welcomeMessage": "Hello {name}! I'm your Smart Buddy. How can I help you grow your business today?",
+        "thinking": "Thinking",
+        "placeholder": "Ask for recommendations...",
+        "errorMessage": "Sorry, something went wrong. Please try again."
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "english": "English",
+        "hindi": "Hindi"
+    }
+}
