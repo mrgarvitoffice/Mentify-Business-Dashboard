@@ -12,23 +12,23 @@
     --card-foreground: 20 15% 25%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 15% 25%;
-    --primary: 205 82% 50%; /* Softer, professional blue */
+    --primary: 205 75% 50%; /* Softer, professional blue with reduced saturation */
     --primary-foreground: 0 0% 100%;
     --secondary: 175 60% 45%; /* Muted Teal */
     --secondary-foreground: 0 0% 100%;
     --muted: 30 40% 95%;
     --muted-foreground: 30 10% 45%;
-    --accent: 350 80% 60%; /* Warm Coral/Pink */
+    --accent: 0 75% 60%; /* Vibrant Red */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 30 30% 90%;
     --input: 30 30% 90%;
-    --ring: 205 82% 50%;
+    --ring: 205 75% 50%;
     --radius: 0.75rem;
-    --chart-1: 205 82% 50%;
+    --chart-1: 205 75% 50%;
     --chart-2: 175 60% 45%;
-    --chart-3: 350 80% 60%;
+    --chart-3: 0 75% 60%;
     --chart-4: 25 80% 55%;
     --chart-5: 190 70% 50%;
   }
