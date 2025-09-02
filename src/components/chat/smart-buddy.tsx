@@ -31,7 +31,6 @@ interface Message {
 
 function SettingsPanel({ onClose }: { onClose: () => void }) {
     const { language, setLanguage, t } = useLanguage();
-    const [fontSize, setFontSize] = useState("medium");
 
     return (
         <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
@@ -40,33 +39,16 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
                 <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
             </div>
             <div className="space-y-4">
-                <div className="space-y-2 rounded-lg border p-3">
-                    <Label className="flex items-center gap-2"><CaseSensitive className="h-4 w-4"/>{t.settings.fontSize()}</Label>
-                     <RadioGroup defaultValue={fontSize} onValueChange={setFontSize} className="flex items-center justify-around pt-2">
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="small" id="fs-sm" />
-                            <Label htmlFor="fs-sm">{t.settings.small()}</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="medium" id="fs-md" />
-                            <Label htmlFor="fs-md">{t.settings.medium()}</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="large" id="fs-lg" />
-                            <Label htmlFor="fs-lg">{t.settings.large()}</Label>
-                        </div>
-                    </RadioGroup>
-                </div>
                 <div className="flex items-center justify-between rounded-lg border p-3">
-                    <Label htmlFor="language-switch">{t.settings.language()}</Label>
+                    <Label htmlFor="language-switch" className="flex items-center gap-2"><CaseSensitive className="h-4 w-4"/> {t.settings.language()}</Label>
                     <div className="flex items-center gap-2">
-                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary')}>{t.settings.english()}</Label>
+                        <Label htmlFor="language-switch" className={cn(language === 'en' && 'text-primary font-bold')}>{t.settings.english()}</Label>
                         <Switch
                             id="language-switch"
                             checked={language === 'hi'}
                             onCheckedChange={(checked) => setLanguage(checked ? 'hi' : 'en')}
                         />
-                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary')}>{t.settings.hindi()}</Label>
+                        <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary font-bold')}>{t.settings.hindi()}</Label>
                     </div>
                 </div>
                  <div className="space-y-2 rounded-lg border p-3">
@@ -114,6 +96,12 @@ export function SmartBuddy() {
       });
     }
   }, [messages]);
+  
+  useEffect(() => {
+    if(!isOpen) {
+        setShowSettings(false);
+    }
+  }, [isOpen]);
 
   const handleSend = async () => {
     if (input.trim() === "") return;
@@ -165,19 +153,19 @@ export function SmartBuddy() {
       <SheetTrigger asChild>
         <Button
           variant="default"
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 z-50"
+          className="fixed bottom-20 right-4 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 z-50 md:bottom-6 md:right-6"
         >
           <Bot className="h-8 w-8 text-primary-foreground" />
         </Button>
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col p-0 sm:max-w-lg">
         {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
-        <SheetHeader className="p-4 flex flex-row items-center justify-between">
+        <SheetHeader className="p-4 flex flex-row items-center justify-between border-b">
           <SheetTitle className="flex items-center gap-2 text-xl">
             <Sparkles className="h-6 w-6 text-accent" />
             {t.smartBuddy.title()}
           </SheetTitle>
-           <Button variant="ghost" size="icon" onClick={() => setShowSettings(true)}>
+           <Button variant="ghost" size="icon" onClick={() => setShowSettings(s => !s)}>
                 <Settings className="h-5 w-5" />
             </Button>
         </SheetHeader>
