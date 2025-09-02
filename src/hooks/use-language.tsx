@@ -17,59 +17,48 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+// Helper function to access nested properties of an object
+const getNestedTranslation = (obj: any, keys: string[]) => {
+  return keys.reduce((acc, key) => (acc && acc[key] !== undefined) ? acc[key] : undefined, obj);
+};
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
-  const tCallback = useCallback((key: string) => {
-    const keys = key.split('.');
-    let result = translations[language];
-    for (const k of keys) {
-      if (result && typeof result === 'object' && k in result) {
-        result = result[k as keyof typeof result];
-      } else {
-        // Fallback to English if translation not found
-        let fallbackResult = translations.en;
-        for (const fk of keys) {
-          if (fallbackResult && typeof fallbackResult === 'object' && fk in fallbackResult) {
-            fallbackResult = fallbackResult[fk as keyof typeof fallbackResult];
-          } else {
-            return key; // Return the key if not found in fallback either
-          }
+  const createTranslationProxy = useCallback((path: string[] = []): any => {
+    return new Proxy(() => {}, {
+      get: (_, prop: string) => {
+        return createTranslationProxy([...path, prop]);
+      },
+      apply: (_, __, args: [Record<string, string | number> | undefined]) => {
+        const key = path.join('.');
+        let translation = getNestedTranslation(translations[language], path);
+
+        // Fallback to English if translation is not found
+        if (translation === undefined) {
+          translation = getNestedTranslation(translations.en, path);
         }
-        return fallbackResult;
+        
+        if (translation === undefined) {
+          return key; // Return the key if it's not found in English either
+        }
+
+        if (typeof translation === 'string') {
+          const [vars] = args;
+          if (!vars) return translation;
+          let str = translation;
+          for (const key in vars) {
+            str = str.replace(`{${key}}`, String(vars[key]));
+          }
+          return str;
+        }
+
+        return translation;
       }
-    }
-    return result;
+    });
   }, [language]);
   
-  const tProxy = React.useMemo(() => new Proxy({} as any, {
-    get(_, prop: string) {
-      return new Proxy({} as any, {
-        get(_, subProp: string) {
-           const fullKey = `${prop}.${subProp}`;
-           const translation = tCallback(fullKey);
-           
-           if(typeof translation === 'string') {
-             return (vars?: Record<string, string>) => {
-                if(!vars) return translation;
-                let str = translation;
-                for(const key in vars){
-                    str = str.replace(`{${key}}`, vars[key]);
-                }
-                return str;
-             }
-           }
-           // Return the function for nested keys that are functions
-           if (typeof translation === 'function') {
-                return translation;
-           }
-
-           // for simple non-function values
-           return () => translation;
-        }
-      })
-    }
-  }), [tCallback]);
+  const tProxy = React.useMemo(() => createTranslationProxy(), [createTranslationProxy]);
 
 
   return (
