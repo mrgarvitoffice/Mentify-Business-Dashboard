@@ -1,5 +1,8 @@
 
 {
+    "dashboard": {
+        "welcome": "Welcome back, {name}!"
+    },
     "smartBuddy": {
         "title": "Smart Buddy",
         "welcomeMessage": "Hello {name}! I'm your Smart Buddy. How can I help you grow your business today?",

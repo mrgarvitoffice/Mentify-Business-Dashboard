@@ -19,8 +19,8 @@
     --secondary-foreground: 0 0% 100%;
     --muted: 34 30% 95%; /* Beige-toned muted color */
     --muted-foreground: 30 10% 45%;
-    --accent: 0 65% 60%; /* Softer, less vibrant Red */
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 80% 90%; /* Very light red for hover effect */
+    --accent-foreground: 0 65% 60%; /* Original accent red for text on hover */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 34 25% 90%; /* Beige-toned border */
