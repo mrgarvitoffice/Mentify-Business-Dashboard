@@ -32,6 +32,7 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import React from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useSmartBuddy } from "@/hooks/use-smart-buddy";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -99,59 +100,80 @@ function MobileBottomNav() {
     );
 }
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { language } = useLanguage();
+function DashboardLayoutContent({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    const { language } = useLanguage();
+    const { setIsOpen, setShowSettings } = useSmartBuddy();
 
-  return (
-    <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
-      <DesktopSidebar />
-      <div className="flex flex-col flex-1 overflow-y-auto">
-        <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
-           <div className="w-full flex-1">
-             <div className="md:hidden font-semibold flex items-center gap-2">
-                <Logo className="h-6 w-6 text-primary" />
-                <span>MentifyAI</span>
+    const openSettings = () => {
+        setIsOpen(true);
+        setShowSettings(true);
+    }
+  
+    return (
+      <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
+        <DesktopSidebar />
+        <div className="flex flex-col flex-1 overflow-y-auto">
+          <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
+             <div className="w-full flex-1">
+               <div className="md:hidden font-semibold flex items-center gap-2">
+                  <Logo className="h-6 w-6 text-primary" />
+                  <span>MentifyAI</span>
+               </div>
              </div>
-           </div>
-          <ThemeSwitcher />
-          <Button variant="outline" size="icon" className="h-8 w-8">
-            <Bell className="h-4 w-4" />
-            <span className="sr-only">Toggle notifications</span>
-          </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/">Logout</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
-        <main key={language} className="bg-background">
-            <div className="flex flex-1 flex-col gap-4 lg:gap-6 p-4 lg:p-6 pb-20 md:pb-6">
-                {children}
-            </div>
-        </main>
-        <SmartBuddy />
+            <ThemeSwitcher />
+            <Button variant="outline" size="icon" className="h-8 w-8">
+              <Bell className="h-4 w-4" />
+              <span className="sr-only">Toggle notifications</span>
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="secondary" size="icon" className="rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <span className="sr-only">Toggle user menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={openSettings}>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/">Logout</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </header>
+          <main key={language} className="bg-background flex-1">
+              <div className="flex flex-col gap-4 lg:gap-6 p-4 lg:p-6 pb-20 md:pb-6 h-full">
+                  {children}
+              </div>
+          </main>
+          <SmartBuddy />
+        </div>
+         <MobileBottomNav />
       </div>
-       <MobileBottomNav />
-    </div>
-  );
+    );
+}
+
+
+import { SmartBuddyProvider } from "@/hooks/use-smart-buddy";
+
+export default function DashboardLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <SmartBuddyProvider>
+            <DashboardLayoutContent>{children}</DashboardLayoutContent>
+        </SmartBuddyProvider>
+    )
 }

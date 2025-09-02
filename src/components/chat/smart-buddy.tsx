@@ -22,6 +22,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useSmartBuddy } from "@/hooks/use-smart-buddy";
 
 
 interface Message {
@@ -62,12 +63,11 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
 
 
 export function SmartBuddy() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, setIsOpen, showSettings, setShowSettings } = useSmartBuddy();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isTtsLoading, setIsTtsLoading] = useState<string | null>(null);
-  const [showSettings, setShowSettings] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { t } = useLanguage();
@@ -101,7 +101,7 @@ export function SmartBuddy() {
     if(!isOpen) {
         setShowSettings(false);
     }
-  }, [isOpen]);
+  }, [isOpen, setShowSettings]);
 
   const handleSend = async () => {
     if (input.trim() === "") return;
