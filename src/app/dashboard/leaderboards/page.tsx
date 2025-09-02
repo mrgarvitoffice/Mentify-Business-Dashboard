@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { topEarners, topRecruiters, poolColors } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { User } from "lucide-react";
+import { User, Trophy } from "lucide-react";
 
 
 type LeaderboardUser = {
@@ -105,7 +105,10 @@ function MobileLeaderboardList({ data, type }: { data: LeaderboardUser[], type: 
 export default function LeaderboardsPage() {
   return (
     <>
-      <h1 className="text-3xl font-bold">Leaderboards</h1>
+      <div className="flex items-center gap-3">
+        <Trophy className="h-8 w-8 text-primary" />
+        <h1 className="text-3xl font-bold">Leaderboards</h1>
+      </div>
       <div className="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
         <Card className="transition-all duration-300 hover:shadow-xl">
           <CardHeader>

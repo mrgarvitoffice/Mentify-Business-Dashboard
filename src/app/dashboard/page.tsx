@@ -16,7 +16,7 @@ import {
 import Image from "next/image";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUp, Lightbulb } from "lucide-react";
+import { ArrowUp, LayoutDashboard, Lightbulb } from "lucide-react";
 import { kpiData, poolData, achievements, promotions, user } from "@/lib/data";
 import { getAlertsAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
@@ -55,7 +55,10 @@ async function OpportunityAlerts() {
 export default function DashboardPage() {
   return (
     <>
-      <h1 className="text-3xl font-bold">Welcome back, {user.name.split(' ')[0]}!</h1>
+      <div className="flex items-center gap-3">
+        <LayoutDashboard className="h-8 w-8 text-primary" />
+        <h1 className="text-3xl font-bold">Welcome back, {user.name.split(' ')[0]}!</h1>
+      </div>
       
       <Carousel
         opts={{

@@ -8,12 +8,15 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { marketingAssets } from "@/lib/data";
-import { Copy } from "lucide-react";
+import { Copy, Megaphone } from "lucide-react";
 
 export default function MarketingPage() {
   return (
     <>
-      <h1 className="text-3xl font-bold">Affiliate Marketing Hub</h1>
+      <div className="flex items-center gap-3">
+        <Megaphone className="h-8 w-8 text-primary" />
+        <h1 className="text-3xl font-bold">Affiliate Marketing Hub</h1>
+      </div>
       <Card>
         <CardHeader>
           <CardTitle>Marketing Assets</CardTitle>

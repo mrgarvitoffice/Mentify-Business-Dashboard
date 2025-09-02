@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
@@ -18,7 +19,7 @@ import {
 } from "@/components/ui/table";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, TrendingUp } from "lucide-react";
 import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
 
 function DesktopIncomeTable() {
@@ -80,7 +81,10 @@ export default function IncomePage() {
   return (
     <>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">Income Tracking</h1>
+          <div className="flex items-center gap-3">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight">Income Tracking</h1>
+          </div>
           <Button className="w-full sm:w-auto text-sm sm:text-base shrink-0">
             <Download className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
             <span className="truncate">Download Statements</span>
