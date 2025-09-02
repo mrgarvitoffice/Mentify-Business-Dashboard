@@ -213,7 +213,7 @@ export default function DownlinePage() {
           <DialogContent className="sm:max-w-md p-0 overflow-hidden">
              <DialogTitle className="sr-only">{selectedMember.name}'s Details</DialogTitle>
             <div className="relative h-24 bg-primary/10">
-                <Image src="https://picsum.photos/400/100" alt="Banner" layout="fill" objectFit="cover" data-ai-hint="abstract background"/>
+                <Image src="https://picsum.photos/400/100" alt="Banner" fill objectFit="cover" data-ai-hint="abstract background"/>
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
                     <Avatar className="h-24 w-24 border-4 border-background ring-2 ring-primary">
                         <AvatarImage src={selectedMember.avatar} alt={selectedMember.name} />
