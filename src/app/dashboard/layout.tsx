@@ -25,6 +25,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Logo } from "@/components/icons";
 import { user } from "@/lib/data";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { SmartBuddy } from "@/components/chat/smart-buddy";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -147,6 +148,7 @@ export default function DashboardLayout({
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
           {children}
         </main>
+        <SmartBuddy />
       </div>
     </div>
   );

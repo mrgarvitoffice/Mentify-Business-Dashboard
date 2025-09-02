@@ -18,7 +18,6 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowUp, Lightbulb } from "lucide-react";
 import { kpiData, poolData, achievements, promotions, user } from "@/lib/data";
 import { getAlertsAction } from "@/app/actions";
-import { SmartBuddy } from "@/components/chat/smart-buddy";
 import { cn } from "@/lib/utils";
 
 async function OpportunityAlerts() {
@@ -154,7 +153,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-      <SmartBuddy />
     </>
   );
 }
