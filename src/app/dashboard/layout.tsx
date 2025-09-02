@@ -27,6 +27,7 @@ import { Logo } from "@/components/icons";
 import { user } from "@/lib/data";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { SmartBuddy } from "@/components/chat/smart-buddy";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -44,35 +45,36 @@ export default function DashboardLayout({
   const pathname = usePathname();
 
   const navContent = (
-    <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+    <nav className="flex flex-col items-start gap-2 px-2 text-sm font-medium lg:px-4">
       {navItems.map((item) => (
         <Link
           key={item.label}
           href={item.href}
-          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+          className={cn(
+            "group flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary w-full",
             pathname === item.href
               ? "bg-muted text-primary"
               : "text-muted-foreground"
-          }`}
+          )}
         >
-          <item.icon className="h-4 w-4" />
-          {item.label}
+          <item.icon className="h-5 w-5 flex-shrink-0" />
+          <span className="truncate transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">{item.label}</span>
         </Link>
       ))}
     </nav>
   );
 
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-muted/40 md:block">
+    <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
+      <div className="hidden border-r bg-muted/40 md:block group/sidebar w-[5.5rem] hover:w-56 transition-all duration-300 ease-in-out">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/" className="flex items-center gap-2 font-semibold">
-              <Logo className="h-6 w-6 text-primary" />
-              <span className="text-xl">MentifyAI</span>
+              <Logo className="h-6 w-6 text-primary flex-shrink-0" />
+              <span className="text-xl transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">MentifyAI</span>
             </Link>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 overflow-y-auto">
             {navContent}
           </div>
         </div>
@@ -97,7 +99,7 @@ export default function DashboardLayout({
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
                   <Logo className="h-6 w-6 text-primary" />
-                  <span className="sr-only">MentifyAI</span>
+                  <span>MentifyAI</span>
                 </Link>
                 {navItems.map((item) => (
                     <Link
