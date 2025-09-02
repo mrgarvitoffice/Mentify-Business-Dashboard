@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/hooks/use-language';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -17,12 +17,6 @@ const fontInter = Inter({
   variable: '--font-body',
 });
 
-const fontSpaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-headline',
-});
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("font-body", fontInter.variable, fontSpaceGrotesk.variable)}>
+      <body className={cn("font-body", fontInter.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

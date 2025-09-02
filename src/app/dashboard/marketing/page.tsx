@@ -12,10 +12,10 @@ import { Copy } from "lucide-react";
 export default function MarketingPage() {
   return (
     <>
-      <h1 className="font-headline text-3xl font-bold">Affiliate Marketing Hub</h1>
+      <h1 className="text-3xl font-bold">Affiliate Marketing Hub</h1>
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Marketing Assets</CardTitle>
+          <CardTitle>Marketing Assets</CardTitle>
           <CardDescription>
             All the tools you need to promote your business and grow your network.
           </CardDescription>

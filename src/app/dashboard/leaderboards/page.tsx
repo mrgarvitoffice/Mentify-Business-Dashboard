@@ -20,11 +20,11 @@ import { cn } from "@/lib/utils";
 export default function LeaderboardsPage() {
   return (
     <>
-      <h1 className="font-headline text-3xl font-bold">Leaderboards</h1>
+      <h1 className="text-3xl font-bold">Leaderboards</h1>
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Top Earners (Monthly)</CardTitle>
+            <CardTitle>Top Earners (Monthly)</CardTitle>
             <CardDescription>Recognizing the highest income earners.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -57,7 +57,7 @@ export default function LeaderboardsPage() {
         
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Top Recruiters (Monthly)</CardTitle>
+            <CardTitle>Top Recruiters (Monthly)</CardTitle>
             <CardDescription>Celebrating the top network builders.</CardDescription>
           </CardHeader>
           <CardContent>

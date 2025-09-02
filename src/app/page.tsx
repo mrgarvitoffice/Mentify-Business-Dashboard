@@ -14,9 +14,9 @@ export default function LoginPage() {
           <CardHeader className="items-center text-center">
             <Link href="/" className="mb-4 flex items-center gap-2 text-foreground">
               <Logo className="h-8 w-8" />
-              <span className="font-headline text-2xl font-bold">MentifyAI</span>
+              <span className="text-2xl font-bold">MentifyAI</span>
             </Link>
-            <CardTitle className="font-headline text-3xl">Partner Login</CardTitle>
+            <CardTitle className="text-3xl">Partner Login</CardTitle>
             <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
           </CardHeader>
           <CardContent>

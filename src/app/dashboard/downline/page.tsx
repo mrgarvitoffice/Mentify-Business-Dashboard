@@ -132,11 +132,11 @@ export default function DownlinePage() {
 
   return (
     <>
-      <h1 className="font-headline text-3xl font-bold">Downline Genealogy</h1>
+      <h1 className="text-3xl font-bold">Downline Genealogy</h1>
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Team Structure</CardTitle>
+          <CardTitle>Team Structure</CardTitle>
           <CardDescription>
             Double-click a member to view their details. Use the chevrons to
             expand or collapse branches.
@@ -182,7 +182,7 @@ export default function DownlinePage() {
         >
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle className="font-headline text-2xl">
+              <DialogTitle className="text-2xl">
                 {selectedMember.name}
               </DialogTitle>
               <DialogDescription>

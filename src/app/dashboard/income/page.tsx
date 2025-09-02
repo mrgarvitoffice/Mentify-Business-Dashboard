@@ -25,7 +25,7 @@ export default function IncomePage() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h1 className="font-headline text-3xl font-bold">Income Tracking</h1>
+        <h1 className="text-3xl font-bold">Income Tracking</h1>
         <Button>
           <Download className="mr-2 h-4 w-4" />
           Download Statements
@@ -34,7 +34,7 @@ export default function IncomePage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Monthly Income Trend</CardTitle>
+          <CardTitle>Monthly Income Trend</CardTitle>
           <CardDescription>Your income over the last 12 months.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -73,7 +73,7 @@ export default function IncomePage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Income Breakdown</CardTitle>
+          <CardTitle>Income Breakdown</CardTitle>
           <CardDescription>Detailed view of your recent earnings by category.</CardDescription>
         </CardHeader>
         <CardContent>

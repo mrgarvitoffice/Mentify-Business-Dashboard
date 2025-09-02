@@ -26,7 +26,7 @@ async function OpportunityAlerts() {
   return (
     <Card className="lg:col-span-3">
       <CardHeader>
-        <CardTitle className="font-headline flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2">
           <Lightbulb className="h-6 w-6 text-accent" />
           Opportunity Alerts
         </CardTitle>
@@ -54,7 +54,7 @@ async function OpportunityAlerts() {
 export default function DashboardPage() {
   return (
     <>
-      <h1 className="font-headline text-3xl font-bold">Welcome back, {user.name.split(' ')[0]}!</h1>
+      <h1 className="text-3xl font-bold">Welcome back, {user.name.split(' ')[0]}!</h1>
       
       <Carousel
         opts={{
@@ -77,7 +77,7 @@ export default function DashboardPage() {
                   />
                   <div className="absolute inset-0 bg-black/40" />
                   <div className="absolute inset-0 flex flex-col justify-end p-6">
-                    <h2 className="font-headline text-2xl font-bold text-white">{promo.title}</h2>
+                    <h2 className="text-2xl font-bold text-white">{promo.title}</h2>
                     <p className="text-sm text-white/80">{promo.description}</p>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="lg:col-span-4">
           <CardHeader>
-            <CardTitle className="font-headline">Next Pool Qualification</CardTitle>
+            <CardTitle>Next Pool Qualification</CardTitle>
             <CardDescription>
               Your progress towards the <span className="font-bold text-primary">{poolData.nextPool}</span> pool.
             </CardDescription>
@@ -133,7 +133,7 @@ export default function DashboardPage() {
 
         <Card className="lg:col-span-3">
           <CardHeader>
-            <CardTitle className="font-headline">Recent Achievements</CardTitle>
+            <CardTitle>Recent Achievements</CardTitle>
             <CardDescription>Your latest milestones and awards.</CardDescription>
           </CardHeader>
           <CardContent>

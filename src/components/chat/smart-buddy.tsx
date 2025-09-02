@@ -32,7 +32,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
     return (
         <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="font-headline text-lg">{t.settings.title()}</h3>
+                <h3 className="text-lg font-semibold">{t.settings.title()}</h3>
                 <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
             </div>
             <div className="space-y-4">
@@ -148,7 +148,7 @@ export function SmartBuddy() {
       <SheetContent className="flex w-full flex-col p-0 sm:max-w-lg">
         {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
         <SheetHeader className="p-4 flex flex-row items-center justify-between">
-          <SheetTitle className="font-headline flex items-center gap-2 text-xl">
+          <SheetTitle className="flex items-center gap-2 text-xl">
             <Sparkles className="h-6 w-6 text-accent" />
             {t.smartBuddy.title()}
           </SheetTitle>
