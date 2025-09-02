@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -24,26 +23,33 @@ import { Download } from "lucide-react";
 import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
 
 function DesktopIncomeTable() {
-    return (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Category</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+  return (
+    <div className="w-full overflow-x-auto">
+      <Table className="min-w-[600px] w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Category</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {incomeBreakdown.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium">{item.category}</TableCell>
+              <TableCell>{item.date}</TableCell>
+              <TableCell className="text-right font-mono">
+                ${item.amount.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </TableCell>
             </TableRow>
-          </TableHeader>
-          <TableBody>
-            {incomeBreakdown.map((item, index) => (
-              <TableRow key={index}>
-                <TableCell className="font-medium">{item.category}</TableCell>
-                <TableCell>{item.date}</TableCell>
-                <TableCell className="text-right font-mono">${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-    );
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
 }
 
 function MobileIncomeList() {
@@ -51,17 +57,24 @@ function MobileIncomeList() {
         <div className="space-y-3">
             {incomeBreakdown.map((item, index) => (
                 <Card key={index}>
-                    <CardContent className="p-4 flex justify-between items-center">
-                        <div>
-                            <p className="font-bold">{item.category}</p>
-                            <p className="text-sm text-muted-foreground">{item.date}</p>
+                    <CardContent className="p-4">
+                        <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                                <p className="font-bold text-base">{item.category}</p>
+                                <p className="text-sm text-muted-foreground">{item.date}</p>
+                            </div>
+                             <p className="font-mono font-bold text-lg text-primary">
+                                ${item.amount.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                                })}
+                            </p>
                         </div>
-                        <p className="text-lg font-bold font-mono ml-auto">${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
                     </CardContent>
                 </Card>
             ))}
         </div>
-    );
+    )
 }
 
 export default function IncomePage() {
@@ -75,6 +88,7 @@ export default function IncomePage() {
         </Button>
       </div>
 
+      {/* Income Chart */}
       <Card>
         <CardHeader>
           <CardTitle>Monthly Income Trend</CardTitle>
@@ -96,7 +110,7 @@ export default function IncomePage() {
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                tickFormatter={(value) => `$${value/1000}k`}
+                tickFormatter={(value) => `$${value / 1000}k`}
               />
               <ChartTooltip
                 cursor={{ fill: 'hsl(var(--muted))' }}
@@ -112,6 +126,7 @@ export default function IncomePage() {
         </CardContent>
       </Card>
 
+      {/* Income Breakdown Table */}
       <Card>
         <CardHeader>
           <CardTitle>Income Breakdown</CardTitle>
