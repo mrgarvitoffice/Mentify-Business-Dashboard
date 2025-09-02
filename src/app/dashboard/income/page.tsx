@@ -8,19 +8,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Button } from "@/components/ui/button";
-import { Download, TrendingUp, Calendar, DollarSign } from "lucide-react";
-import {
-  incomeChartData,
-  incomeChartConfig,
-  incomeBreakdown,
-} from "@/lib/data";
 import {
   Table,
   TableBody,
@@ -29,148 +18,142 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
+import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
 
 function DesktopIncomeTable() {
     return (
-        <Table>
-            <TableHeader>
+        <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
                 <TableRow>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                  <TableHead className="min-w-[120px]">Category</TableHead>
+                  <TableHead className="min-w-[100px]">Date</TableHead>
+                  <TableHead className="text-right min-w-[100px]">Amount</TableHead>
                 </TableRow>
-            </TableHeader>
-            <TableBody>
+              </TableHeader>
+              <TableBody>
                 {incomeBreakdown.map((item, index) => (
-                    <TableRow key={index}>
-                        <TableCell className="font-medium flex items-center gap-3">
-                           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                <TrendingUp className="h-5 w-5" />
-                           </div>
-                           {item.category}
-                        </TableCell>
-                        <TableCell>{item.date}</TableCell>
-                        <TableCell className="text-right font-mono font-bold text-primary">
-                            ${item.amount.toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                            })}
-                        </TableCell>
-                    </TableRow>
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{item.category}</TableCell>
+                    <TableCell className="whitespace-nowrap">{item.date}</TableCell>
+                    <TableCell className="text-right font-mono whitespace-nowrap">
+                        ${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    </TableCell>
+                  </TableRow>
                 ))}
-            </TableBody>
-        </Table>
+              </TableBody>
+            </Table>
+        </div>
     );
 }
 
 function MobileIncomeList() {
-  return (
-    <div className="space-y-3">
-        {incomeBreakdown.map((item, index) => (
-            <Card key={index} className="transition-all duration-200 hover:shadow-md hover:border-primary/50">
-                <CardContent className="p-4 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                            <TrendingUp className="h-6 w-6" />
-                        </div>
-                        <div className="flex-1">
-                            <p className="font-bold text-base text-foreground">{item.category}</p>
-                            <div className="flex items-center text-xs text-muted-foreground gap-1.5 mt-1">
-                                <Calendar className="h-3 w-3" />
-                                <span>{item.date}</span>
+    return (
+        <div className="space-y-3">
+            {incomeBreakdown.map((item, index) => (
+                <Card key={index} className="shadow-sm">
+                    <CardContent className="p-3 sm:p-4">
+                        <div className="flex justify-between items-start gap-3">
+                            <div className="flex-1 min-w-0">
+                                <p className="font-semibold text-sm sm:text-base truncate">{item.category}</p>
+                                <p className="text-xs sm:text-sm text-muted-foreground mt-1">{item.date}</p>
+                            </div>
+                            <div className="flex-shrink-0">
+                                <p className="text-sm sm:text-lg font-bold font-mono">
+                                    ${item.amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div className="text-right">
-                        <p className="font-mono font-bold text-lg text-primary">
-                            ${item.amount.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                        })}
-                        </p>
-                        <div className="flex items-center justify-end text-xs text-muted-foreground gap-1.5 mt-1">
-                            <DollarSign className="h-3 w-3" />
-                            <span>Income</span>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-        ))}
-    </div>
-  );
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    );
 }
 
 export default function IncomePage() {
   return (
-    <>
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold text-center md:text-left">
-          Income Tracking
-        </h1>
-        <Button className="w-full md:w-auto">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Income Tracking</h1>
+        <Button className="w-full sm:w-auto shrink-0">
           <Download className="mr-2 h-4 w-4" />
           Download Statements
         </Button>
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Monthly Income Trend</CardTitle>
-          <CardDescription>
-            Your income over the last 12 months.
-          </CardDescription>
+        <CardHeader className="p-4 sm:p-6">
+          <CardTitle className="text-lg sm:text-xl">Monthly Income Trend</CardTitle>
+          <CardDescription className="text-sm">Your income over the last 12 months.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ChartContainer
-            config={incomeChartConfig}
-            className="h-[250px] w-full md:h-[300px]"
-          >
-            <BarChart data={incomeChartData} accessibilityLayer>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="month"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-              />
-              <YAxis
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(value) => `$${Number(value) / 1000}k`}
-              />
-              <ChartTooltip
-                cursor={{ fill: "hsl(var(--muted))" }}
-                content={<ChartTooltipContent />}
-              />
-              <Bar
-                dataKey="income"
-                fill="hsl(var(--primary))"
-                radius={[4, 4, 0, 0]}
-              />
-            </BarChart>
-          </ChartContainer>
+        <CardContent className="p-4 sm:p-6 pt-0">
+          <div className="w-full overflow-hidden">
+            <ChartContainer config={incomeChartConfig} className="h-[200px] sm:h-[250px] lg:h-[300px] w-full">
+              <BarChart 
+                data={incomeChartData} 
+                accessibilityLayer
+                margin={{
+                  top: 10,
+                  right: 10,
+                  left: -20,
+                  bottom: 40,
+                }}
+              >
+                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="month"
+                  stroke="#888888"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                  interval={0}
+                  angle={-45}
+                  textAnchor="end"
+                  height={50}
+                />
+                <YAxis
+                  stroke="#888888"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(value) => `$${(Number(value)/1000).toFixed(0)}k`}
+                  width={40}
+                />
+                <ChartTooltip
+                  cursor={{ fill: 'hsl(var(--muted))' }}
+                  content={<ChartTooltipContent />}
+                />
+                <Bar
+                  dataKey="income"
+                  fill="hsl(var(--primary))"
+                  radius={[2, 2, 0, 0]}
+                />
+              </BarChart>
+            </ChartContainer>
+          </div>
         </CardContent>
       </Card>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Income Breakdown</CardTitle>
-          <CardDescription>
-            Detailed view of your recent earnings by category.
-          </CardDescription>
+        <CardHeader className="p-4 sm:p-6">
+          <CardTitle className="text-lg sm:text-xl">Income Breakdown</CardTitle>
+          <CardDescription className="text-sm">Detailed view of your recent earnings by category.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="hidden md:block">
-            <DesktopIncomeTable />
-          </div>
-          <div className="md:hidden">
-            <MobileIncomeList />
-          </div>
+        <CardContent className="p-4 sm:p-6 pt-0">
+            {/* Desktop/Tablet View */}
+            <div className="hidden lg:block">
+                <DesktopIncomeTable />
+            </div>
+            {/* Mobile/Small Tablet View */}
+            <div className="lg:hidden">
+                <MobileIncomeList />
+            </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
