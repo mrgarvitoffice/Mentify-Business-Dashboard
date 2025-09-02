@@ -52,7 +52,7 @@
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 182 100% 50%; /* Cyan for border glow */
+    --border: 222 24% 15%;
     --input: 222 24% 15%;
     --ring: 182 100% 50%;
     --chart-1: 182 100% 50%; /* Cyan */
@@ -74,8 +74,7 @@
   }
   
   .dark body {
-    background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(157, 78, 221, 0.15), transparent),
-                linear-gradient(180deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+    background: linear-gradient(180deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
   }
 
   .light body {
