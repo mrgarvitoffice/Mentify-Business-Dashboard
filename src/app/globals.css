@@ -6,8 +6,8 @@
   :root {
     --background: 220 20% 98%;
     --foreground: 240 10% 3.9%;
-    --background-start-rgb: 255, 255, 255;
-    --background-end-rgb: 245, 249, 255;
+    --background-start-rgb: 245, 249, 255;
+    --background-end-rgb: 255, 255, 255;
 
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
