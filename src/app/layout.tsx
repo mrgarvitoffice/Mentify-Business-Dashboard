@@ -1,13 +1,27 @@
+
 import type { Metadata } from 'next';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/hooks/use-language';
+import { Inter, Space_Grotesk } from 'next/font/google';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'MentifyAI Dashboard',
   description: 'Business dashboard for Mentify-AI partners',
 };
+
+const fontInter = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+});
+
+const fontSpaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-headline',
+});
+
 
 export default function RootLayout({
   children,
@@ -16,12 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body">
+      <body className={cn("font-body", fontInter.variable, fontSpaceGrotesk.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

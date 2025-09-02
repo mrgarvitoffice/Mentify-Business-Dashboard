@@ -1,3 +1,4 @@
+
 import type { BarChartProps } from "@/components/ui/chart";
 import { DollarSign, Zap, Users, TrendingUp, Award, Crown, Diamond, Medal, FileText, Link, Presentation, Image as LucideImage, Video, Trophy } from "lucide-react";
 
@@ -58,18 +59,18 @@ export const incomeBreakdown = [
 ];
 
 export const downlineTree = {
-  id: "ME-001", name: "You (Alex Partner)", pool: "Gold", children: [
-    { id: "DP-101", name: "John Smith", pool: "Silver", children: [
-      { id: "DP-201", name: "Jane Doe", pool: "Bronze", children: [] },
-      { id: "DP-202", name: "Peter Jones", pool: "Bronze", children: [] },
+  id: "ME-001", name: "You (Alex Partner)", pool: "Gold", businessVolume: 12450, joinDate: "2023-01-15", children: [
+    { id: "DP-101", name: "John Smith", pool: "Silver", businessVolume: 8200, joinDate: "2023-03-22", children: [
+      { id: "DP-201", name: "Jane Doe", pool: "Bronze", businessVolume: 3100, joinDate: "2023-05-10", children: [] },
+      { id: "DP-202", name: "Peter Jones", pool: "Bronze", businessVolume: 4500, joinDate: "2023-06-01", children: [] },
     ]},
-    { id: "DP-102", name: "Sarah Miller", pool: "Silver", children: [
-      { id: "DP-203", name: "Chris Green", pool: "Silver", children: [
-        { id: "DP-301", name: "Emily White", pool: "Bronze", children: [] },
+    { id: "DP-102", name: "Sarah Miller", pool: "Silver", businessVolume: 9800, joinDate: "2023-04-11", children: [
+      { id: "DP-203", name: "Chris Green", pool: "Silver", businessVolume: 6250, joinDate: "2023-07-20", children: [
+        { id: "DP-301", name: "Emily White", pool: "Bronze", businessVolume: 2800, joinDate: "2023-09-30", children: [] },
       ] },
-      { id: "DP-204", name: "Laura Black", pool: "Bronze", children: [] },
+      { id: "DP-204", name: "Laura Black", pool: "Bronze", businessVolume: 3200, joinDate: "2023-08-15", children: [] },
     ]},
-    { id: "DP-103", name: "Mike Brown", pool: "Bronze", children: [] },
+    { id: "DP-103", name: "Mike Brown", pool: "Bronze", businessVolume: 2100, joinDate: "2023-02-28", children: [] },
   ],
 };
 
