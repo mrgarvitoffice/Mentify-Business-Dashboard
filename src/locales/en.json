@@ -1,3 +1,4 @@
+
 {
     "smartBuddy": {
         "title": "Smart Buddy",
@@ -10,6 +11,11 @@
         "title": "Settings",
         "language": "Language",
         "english": "English",
-        "hindi": "Hindi"
+        "hindi": "Hindi",
+        "support": "Support",
+        "fontSize": "Font Size",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
     }
 }

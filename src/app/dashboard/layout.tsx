@@ -28,6 +28,7 @@ import { user } from "@/lib/data";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { SmartBuddy } from "@/components/chat/smart-buddy";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/hooks/use-language";
 
 const navItems = [
   { href: "/dashboard", icon: Home, label: "Dashboard" },
@@ -43,26 +44,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-
-  const navContent = (
-    <nav className="flex flex-col items-start gap-2 px-2 text-sm font-medium lg:px-4">
-      {navItems.map((item) => (
-        <Link
-          key={item.label}
-          href={item.href}
-          className={cn(
-            "group flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary w-full",
-            pathname === item.href
-              ? "bg-muted text-primary"
-              : "text-muted-foreground"
-          )}
-        >
-          <item.icon className="h-5 w-5 flex-shrink-0" />
-          <span className="truncate transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">{item.label}</span>
-        </Link>
-      ))}
-    </nav>
-  );
+  const { language } = useLanguage();
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
@@ -75,7 +57,23 @@ export default function DashboardLayout({
             </Link>
           </div>
           <div className="flex-1 overflow-y-auto">
-            {navContent}
+            <nav className="flex flex-col items-start gap-2 px-2 text-sm font-medium lg:px-4">
+                {navItems.map((item) => (
+                    <Link
+                    key={item.label}
+                    href={item.href}
+                    className={cn(
+                        "group flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary w-full",
+                        pathname === item.href
+                        ? "bg-muted text-primary"
+                        : "text-muted-foreground"
+                    )}
+                    >
+                    <item.icon className="h-5 w-5 flex-shrink-0" />
+                    <span className="truncate transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">{item.label}</span>
+                    </Link>
+                ))}
+            </nav>
           </div>
         </div>
       </div>
@@ -148,7 +146,7 @@ export default function DashboardLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
+        <main key={language} className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
           {children}
         </main>
         <SmartBuddy />

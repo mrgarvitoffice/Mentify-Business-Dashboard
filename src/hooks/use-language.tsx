@@ -1,6 +1,7 @@
+
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import en from '@/locales/en.json';
 import hi from '@/locales/hi.json';
 
@@ -11,7 +12,7 @@ type Language = 'en' | 'hi';
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: any;
+  t: any; // Using 'any' for the proxy object
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -19,33 +20,37 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
-  const t = (key: string) => {
+  const tCallback = useCallback((key: string) => {
     const keys = key.split('.');
     let result = translations[language];
     for (const k of keys) {
-      result = result[k];
-      if (!result) {
+      if (result && typeof result === 'object' && k in result) {
+        result = result[k as keyof typeof result];
+      } else {
         // Fallback to English if translation not found
         let fallbackResult = translations.en;
         for (const fk of keys) {
-            fallbackResult = fallbackResult[fk];
-            if(!fallbackResult) return key;
+          if (fallbackResult && typeof fallbackResult === 'object' && fk in fallbackResult) {
+            fallbackResult = fallbackResult[fk as keyof typeof fallbackResult];
+          } else {
+            return key; // Return the key if not found in fallback either
+          }
         }
         return fallbackResult;
       }
     }
     return result;
-  };
+  }, [language]);
   
-  const tProxy = new Proxy({} as any, {
+  const tProxy = React.useMemo(() => new Proxy({} as any, {
     get(_, prop: string) {
       return new Proxy({} as any, {
         get(_, subProp: string) {
            const fullKey = `${prop}.${subProp}`;
-           const translation = t(fullKey);
+           const translation = tCallback(fullKey);
            
            if(typeof translation === 'string') {
-             return (vars: Record<string, string>) => {
+             return (vars?: Record<string, string>) => {
                 if(!vars) return translation;
                 let str = translation;
                 for(const key in vars){
@@ -54,11 +59,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
                 return str;
              }
            }
-           return translation;
+           // Return the function for nested keys that are functions
+           if (typeof translation === 'function') {
+                return translation;
+           }
+
+           // for simple non-function values
+           return () => translation;
         }
       })
     }
-  })
+  }), [tCallback]);
+
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t: tProxy }}>

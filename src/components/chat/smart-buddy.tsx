@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Bot, Send, Loader2, Sparkles, User, Volume2, Settings, X } from "lucide-react";
+import { Bot, Send, Loader2, Sparkles, User, Volume2, Settings, X, Mail, CaseSensitive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getBuddyRecommendationsAction, textToSpeechAction } from "@/app/actions";
 import { user } from "@/lib/data";
@@ -20,6 +21,8 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
 
 interface Message {
   sender: "user" | "bot";
@@ -28,6 +31,7 @@ interface Message {
 
 function SettingsPanel({ onClose }: { onClose: () => void }) {
     const { language, setLanguage, t } = useLanguage();
+    const [fontSize, setFontSize] = useState("medium");
 
     return (
         <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 p-4 flex flex-col">
@@ -36,6 +40,23 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
                 <Button variant="ghost" size="icon" onClick={onClose}><X className="h-4 w-4"/></Button>
             </div>
             <div className="space-y-4">
+                <div className="space-y-2 rounded-lg border p-3">
+                    <Label className="flex items-center gap-2"><CaseSensitive className="h-4 w-4"/>{t.settings.fontSize()}</Label>
+                     <RadioGroup defaultValue={fontSize} onValueChange={setFontSize} className="flex items-center justify-around pt-2">
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="small" id="fs-sm" />
+                            <Label htmlFor="fs-sm">{t.settings.small()}</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="medium" id="fs-md" />
+                            <Label htmlFor="fs-md">{t.settings.medium()}</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <RadioGroupItem value="large" id="fs-lg" />
+                            <Label htmlFor="fs-lg">{t.settings.large()}</Label>
+                        </div>
+                    </RadioGroup>
+                </div>
                 <div className="flex items-center justify-between rounded-lg border p-3">
                     <Label htmlFor="language-switch">{t.settings.language()}</Label>
                     <div className="flex items-center gap-2">
@@ -47,6 +68,10 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
                         />
                         <Label htmlFor="language-switch" className={cn(language === 'hi' && 'text-primary')}>{t.settings.hindi()}</Label>
                     </div>
+                </div>
+                 <div className="space-y-2 rounded-lg border p-3">
+                     <Label className="flex items-center gap-2"><Mail className="h-4 w-4"/> {t.settings.support()}</Label>
+                     <p className="text-sm text-muted-foreground">support@mentify.ai</p>
                 </div>
             </div>
         </div>
