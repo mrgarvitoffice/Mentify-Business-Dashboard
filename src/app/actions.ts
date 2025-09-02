@@ -2,6 +2,7 @@
 
 import { getDownlineUpgradeAlerts } from "@/ai/flows/performance-prediction-downline-upgrade-alerts";
 import { getSmartBuddyPersonalizedRecommendations } from "@/ai/flows/smart-buddy-personalized-recommendations";
+import { textToSpeech } from "@/ai/flows/tts";
 import { mockDownlineDataForAI, mockDownlineActivityForAI, mockPartnerPerformanceForAI } from "@/lib/data";
 
 export async function getAlertsAction() {
@@ -31,5 +32,16 @@ export async function getBuddyRecommendationsAction(
     return {
       recommendations: "I'm sorry, I couldn't fetch recommendations at this time. Please try again later.",
     };
+  }
+}
+
+
+export async function textToSpeechAction(text: string) {
+  try {
+    const response = await textToSpeech(text);
+    return response;
+  } catch (error) {
+    console.error("Error in TTS action:", error);
+    return { media: "" };
   }
 }

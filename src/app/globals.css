@@ -6,30 +6,30 @@
   :root {
     --background-start-rgb: 243, 244, 246;
     --background-end-rgb: 255, 255, 255;
-    --background: 0 0% 100%; /* Crisp white */
+    --background: 220 20% 98%; /* Firebase-like light gray */
     --foreground: 224 71% 4%; /* Dark Navy Text */
     --card: 0 0% 100%;
     --card-foreground: 224 71% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71% 4%;
-    --primary: 221 83% 53%; /* Royal Blue */
+    --primary: 24 94% 52%; /* Firebase Orange */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 338 91% 65%; /* Crimson Pink */
+    --accent: 204 90% 54%; /* Firebase Blue */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
+    --ring: 24 94% 52%;
     --radius: 0.75rem;
-    --chart-1: 221 83% 53%; /* Royal Blue */
-    --chart-2: 338 91% 65%; /* Crimson Pink */
-    --chart-3: 151 83% 34%; /* Emerald Green */
-    --chart-4: 45 93% 47%;  /* Gold */
+    --chart-1: 24 94% 52%; /* Firebase Orange */
+    --chart-2: 204 90% 54%; /* Firebase Blue */
+    --chart-3: 38 92% 50%; /* Firebase Amber */
+    --chart-4: 151 83% 34%; /* Emerald Green */
     --chart-5: 27 87% 67%;
   }
 
@@ -80,5 +80,17 @@
 
   .light body {
     background: linear-gradient(180deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  }
+}
+
+@layer components {
+  .chat-bubble {
+    @apply relative transition-all duration-300;
+  }
+  .chat-bubble:hover {
+    @apply transform scale-105 shadow-lg;
+  }
+  .chat-bubble .play-button {
+    @apply absolute -bottom-3 -right-2 opacity-0 transition-all duration-300 group-hover:opacity-100;
   }
 }

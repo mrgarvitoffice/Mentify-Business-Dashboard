@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Bot, Send, Loader2, Sparkles, User } from "lucide-react";
+import { Bot, Send, Loader2, Sparkles, User, Volume2, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,8 +13,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getBuddyRecommendationsAction } from "@/app/actions";
+import { getBuddyRecommendationsAction, textToSpeechAction } from "@/app/actions";
 import { user } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 interface Message {
   sender: "user" | "bot";
@@ -26,7 +27,10 @@ export function SmartBuddy() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isTtsLoading, setIsTtsLoading] = useState<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -35,7 +39,7 @@ export function SmartBuddy() {
         setMessages([
           {
             sender: "bot",
-            text: `Hello ${user.name}! I'm your Smart Buddy. How can I help you grow your business today? You can ask me for income optimization tips, pool advancement guidance, or downline insights.`,
+            text: `Hello ${user.name}! I'm your Smart Buddy. How can I help you grow your business today?`,
           },
         ]);
         setIsLoading(false);
@@ -78,8 +82,27 @@ export function SmartBuddy() {
     }
   };
 
+  const handlePlaySound = async (text: string, index: number) => {
+    if (isTtsLoading === `tts-${index}`) return;
+    setIsTtsLoading(`tts-${index}`);
+    try {
+      const response = await textToSpeechAction(text);
+      if (response.media) {
+        if (audioRef.current) {
+          audioRef.current.src = response.media;
+          audioRef.current.play();
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsTtsLoading(null);
+    }
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
+       <audio ref={audioRef} />
       <SheetTrigger asChild>
         <Button
           variant="default"
@@ -100,9 +123,10 @@ export function SmartBuddy() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 ${
+                className={cn(
+                  "group flex items-start gap-3",
                   message.sender === "user" ? "justify-end" : ""
-                }`}
+                )}
               >
                 {message.sender === "bot" && (
                   <Avatar className="h-8 w-8">
@@ -112,13 +136,29 @@ export function SmartBuddy() {
                   </Avatar>
                 )}
                 <div
-                  className={`max-w-[75%] rounded-lg p-3 text-sm ${
+                   className={cn(
+                    "chat-bubble max-w-[75%] rounded-lg p-3 text-sm",
                     message.sender === "user"
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted"
-                  }`}
+                  )}
                 >
                   <p>{message.text}</p>
+                   {message.sender === 'bot' && (
+                     <Button
+                      size="icon"
+                      variant="ghost"
+                      className="play-button h-7 w-7 rounded-full bg-background text-muted-foreground hover:bg-muted"
+                      onClick={() => handlePlaySound(message.text, index)}
+                      disabled={isTtsLoading === `tts-${index}`}
+                    >
+                      {isTtsLoading === `tts-${index}` ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Volume2 className="h-4 w-4" />
+                      )}
+                    </Button>
+                   )}
                 </div>
                 {message.sender === "user" && (
                   <Avatar className="h-8 w-8">
