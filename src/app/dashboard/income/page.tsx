@@ -15,7 +15,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
-import { Download, TrendingUp, Calendar, ArrowRight, DollarSign } from "lucide-react";
+import { Download, TrendingUp, Calendar, DollarSign } from "lucide-react";
 import {
   incomeChartData,
   incomeChartConfig,
@@ -81,12 +81,18 @@ function MobileIncomeList() {
                                 </div>
                             </div>
                         </div>
-                        <p className="font-mono font-bold text-lg text-primary">
-                            ${item.amount.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          })}
-                        </p>
+                        <div className="text-right">
+                          <p className="font-mono font-bold text-lg text-primary">
+                              ${item.amount.toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
+                          </p>
+                          <div className="flex items-center justify-end text-xs text-muted-foreground gap-1.5 mt-1">
+                            <DollarSign className="h-3 w-3" />
+                            <span>Income</span>
+                          </div>
+                        </div>
                     </CardContent>
                 </Card>
             ))}
@@ -159,9 +165,11 @@ export default function IncomePage() {
             Detailed view of your recent earnings by category.
           </CardDescription>
         </CardHeader>
+        {/* Desktop View */}
         <CardContent className="hidden md:block">
             <DesktopIncomeTable />
         </CardContent>
+        {/* Mobile View */}
          <CardContent className="md:hidden">
             <MobileIncomeList />
         </CardContent>
