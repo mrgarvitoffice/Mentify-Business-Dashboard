@@ -59,20 +59,27 @@ export const incomeBreakdown = [
 ];
 
 export const downlineTree = {
-  id: "ME-001", name: "You (Alex Partner)", pool: "Gold", businessVolume: 12450, joinDate: "2023-01-15", children: [
-    { id: "DP-101", name: "John Smith", pool: "Silver", businessVolume: 8200, joinDate: "2023-03-22", children: [
-      { id: "DP-201", name: "Jane Doe", pool: "Bronze", businessVolume: 3100, joinDate: "2023-05-10", children: [] },
-      { id: "DP-202", name: "Peter Jones", pool: "Bronze", businessVolume: 4500, joinDate: "2023-06-01", children: [] },
+  id: "ME-001", name: "You (Alex Partner)", pool: "Gold", businessVolume: 12450, joinDate: "2023-01-15", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d", children: [
+    { id: "DP-101", name: "John Smith", pool: "Silver", businessVolume: 8200, joinDate: "2023-03-22", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704e", children: [
+      { id: "DP-201", name: "Jane Doe", pool: "Bronze", businessVolume: 3100, joinDate: "2023-05-10", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704f", children: [
+          { id: "DP-301", name: "Emily White", pool: "Bronze", businessVolume: 2800, joinDate: "2023-09-30", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704g", children: [
+              { id: "DP-401", name: "Tom Wilson", pool: "Bronze", businessVolume: 1500, joinDate: "2023-11-12", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704h", children: [
+                  { id: "DP-501", name: "Olivia Green", pool: "Bronze", businessVolume: 800, joinDate: "2024-01-05", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704i", children: [
+                      { id: "DP-601", name: "Sam Blue", pool: "Bronze", businessVolume: 200, joinDate: "2024-03-01", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704j", children: [] },
+                  ]}
+              ]}
+          ]}
+      ]},
+      { id: "DP-202", name: "Peter Jones", pool: "Bronze", businessVolume: 4500, joinDate: "2023-06-01", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704k", children: [] },
     ]},
-    { id: "DP-102", name: "Sarah Miller", pool: "Silver", businessVolume: 9800, joinDate: "2023-04-11", children: [
-      { id: "DP-203", name: "Chris Green", pool: "Silver", businessVolume: 6250, joinDate: "2023-07-20", children: [
-        { id: "DP-301", name: "Emily White", pool: "Bronze", businessVolume: 2800, joinDate: "2023-09-30", children: [] },
-      ] },
-      { id: "DP-204", name: "Laura Black", pool: "Bronze", businessVolume: 3200, joinDate: "2023-08-15", children: [] },
+    { id: "DP-102", name: "Sarah Miller", pool: "Silver", businessVolume: 9800, joinDate: "2023-04-11", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704l", children: [
+      { id: "DP-203", name: "Chris Green", pool: "Silver", businessVolume: 6250, joinDate: "2023-07-20", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704m", children: []},
+      { id: "DP-204", name: "Laura Black", pool: "Bronze", businessVolume: 3200, joinDate: "2023-08-15", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704n", children: [] },
     ]},
-    { id: "DP-103", name: "Mike Brown", pool: "Bronze", businessVolume: 2100, joinDate: "2023-02-28", children: [] },
+    { id: "DP-103", name: "Mike Brown", pool: "Bronze", businessVolume: 2100, joinDate: "2023-02-28", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704o", children: [] },
   ],
 };
+
 
 export const marketingAssets = [
   { type: "Affiliate Link", title: "Your Personal Link", icon: Link, action: "Copy" },
@@ -128,3 +135,4 @@ export const mockDownlineActivityForAI = JSON.stringify({
   topPerformer: { id: "DP-102", name: "Sarah Miller", monthlyBV: 2500 },
   nearPromotion: { id: "DP-101", name: "John Smith", bvToNextPool: 500 },
 });
+
