@@ -24,31 +24,29 @@ import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data"
 
 function DesktopIncomeTable() {
   return (
-    <div className="w-full overflow-x-auto">
-      <Table className="min-w-[600px] w-full">
-        <TableHeader>
-          <TableRow>
-            <TableHead>Category</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Category</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {incomeBreakdown.map((item, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium">{item.category}</TableCell>
+            <TableCell>{item.date}</TableCell>
+            <TableCell className="text-right font-mono">
+              ${item.amount.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody>
-          {incomeBreakdown.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{item.category}</TableCell>
-              <TableCell>{item.date}</TableCell>
-              <TableCell className="text-right font-mono">
-                ${item.amount.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
 
