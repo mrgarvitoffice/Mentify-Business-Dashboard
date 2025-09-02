@@ -144,8 +144,8 @@ export default function DashboardLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main key={language} className="flex-1 overflow-y-auto bg-background">
-            <div className="flex flex-col gap-4 lg:gap-6 p-4 lg:p-6 pb-20 md:pb-6">
+        <main key={language} className="flex flex-col flex-1 overflow-y-auto bg-background">
+            <div className="flex flex-1 flex-col gap-4 lg:gap-6 p-4 lg:p-6 pb-20 md:pb-6">
                 {children}
             </div>
         </main>
