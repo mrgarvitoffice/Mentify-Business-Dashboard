@@ -48,11 +48,11 @@ function DesktopSidebar() {
                 <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                     <Link href="/" className="flex items-center gap-2 font-semibold">
                         <Logo className="h-6 w-6 text-primary flex-shrink-0" />
-                        <span className="text-xl transition-opacity duration-300 opacity-0 group-hover/sidebar:opacity-100">MentifyAI</span>
+                        <span className="text-xl transition-opacity duration-300 opacity-100 group-hover/sidebar:opacity-100">MentifyAI</span>
                     </Link>
                 </div>
                 <div className="flex-1 overflow-y-auto">
-                    <nav className="flex flex-col items-start gap-2 px-2 text-sm font-medium lg:px-4">
+                    <nav className="grid items-start gap-2 px-2 text-sm font-medium lg:px-4">
                         {navItems.map((item) => (
                             <Link
                                 key={item.label}
@@ -90,7 +90,7 @@ function MobileBottomNav() {
                         )}
                     >
                         <item.icon className="w-5 h-5 mb-1" />
-                        <span className="text-[10px]">{item.label}</span>
+                        <span className="text-[10px] text-center">{item.label}</span>
                     </Link>
                 ))}
             </div>

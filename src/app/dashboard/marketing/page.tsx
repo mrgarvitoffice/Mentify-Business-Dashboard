@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -20,7 +21,7 @@ export default function MarketingPage() {
             All the tools you need to promote your business and grow your network.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {marketingAssets.map((asset, index) => (
             <Card key={index} className="flex flex-col">
               <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">

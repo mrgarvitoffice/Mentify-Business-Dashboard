@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -109,7 +110,7 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-4 lg:grid-cols-7">
         <Card className="lg:col-span-4">
           <CardHeader>
             <CardTitle>Next Pool Qualification</CardTitle>
