@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -72,7 +73,7 @@ export function SmartBuddy() {
         setMessages([
           {
             sender: "bot",
-            text: t.smartBuddy.welcomeMessage({name: user.name}),
+            text: t.smartBuddy.welcomeMessage({name: user.name.split(' ')[0]}),
           },
         ]);
         setIsLoading(false);
