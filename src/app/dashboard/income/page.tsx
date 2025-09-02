@@ -30,7 +30,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-
 function DesktopIncomeTable() {
     return (
         <Table>
@@ -71,7 +70,7 @@ function MobileIncomeList() {
             <Card key={index} className="transition-all duration-200 hover:shadow-md hover:border-primary/50">
                 <CardContent className="p-4 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                             <TrendingUp className="h-6 w-6" />
                         </div>
                         <div className="flex-1">
@@ -90,8 +89,8 @@ function MobileIncomeList() {
                         })}
                         </p>
                         <div className="flex items-center justify-end text-xs text-muted-foreground gap-1.5 mt-1">
-                        <DollarSign className="h-3 w-3" />
-                        <span>Income</span>
+                            <DollarSign className="h-3 w-3" />
+                            <span>Income</span>
                         </div>
                     </div>
                 </CardContent>
@@ -100,7 +99,6 @@ function MobileIncomeList() {
     </div>
   );
 }
-
 
 export default function IncomePage() {
   return (
@@ -166,11 +164,9 @@ export default function IncomePage() {
             Detailed view of your recent earnings by category.
           </CardDescription>
         </CardHeader>
-        {/* Desktop View */}
         <CardContent className="hidden md:block">
             <DesktopIncomeTable />
         </CardContent>
-        {/* Mobile View */}
          <CardContent className="md:hidden">
             <MobileIncomeList />
         </CardContent>
