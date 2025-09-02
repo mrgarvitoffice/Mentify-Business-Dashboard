@@ -101,34 +101,37 @@ function TermsAndConditionsDialog() {
                 <DialogHeader>
                     <DialogTitle>Terms and Conditions</DialogTitle>
                     <DialogDescription>
-                        Last updated: {new Date().toLocaleDateString()}
+                        Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).replace(String(new Date().getFullYear()), '2025')}
                     </DialogDescription>
                 </DialogHeader>
                 <div className="prose prose-sm dark:prose-invert max-h-[60vh] overflow-y-auto pr-4">
-                    <p>Welcome to MentifyAI!</p>
-                    <p>These terms and conditions outline the rules and regulations for the use of MentifyAI's Website, located at your-website.com.</p>
-                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use MentifyAI if you do not agree to take all of the terms and conditions stated on this page.</p>
+                    <p>Welcome to MentifyAI! These terms and conditions outline the rules and regulations for the use of the MentifyAI Partner Dashboard.</p>
 
-                    <h4>Cookies:</h4>
-                    <p>The website uses cookies to help personalize your online experience. By accessing MentifyAI, you agreed to use the required cookies.</p>
-                    
-                    <h4>License:</h4>
-                    <p>Unless otherwise stated, MentifyAI and/or its licensors own the intellectual property rights for all material on MentifyAI. All intellectual property rights are reserved. You may access this from MentifyAI for your own personal use subjected to restrictions set in these terms and conditions.</p>
-                    <p>You must not:</p>
+                    <h4>1. Acceptance of Terms</h4>
+                    <p>By accessing this dashboard, we assume you accept these terms and conditions. Do not continue to use the MentifyAI Dashboard if you do not agree to all of the terms and conditions stated on this page.</p>
+
+                    <h4>2. License to Use Dashboard</h4>
                     <ul>
-                        <li>Republish material from MentifyAI</li>
-                        <li>Sell, rent or sub-license material from MentifyAI</li>
-                        <li>Reproduce, duplicate or copy material from MentifyAI</li>
-                        <li>Redistribute content from MentifyAI</li>
+                        <li>Unless otherwise stated, MentifyAI and/or its licensors own the intellectual property rights for all material on the dashboard.</li>
+                        <li>You are granted a limited license only for purposes of viewing and managing your business activities related to MentifyAI.</li>
+                        <li>You must not: Republish, sell, rent, sub-license, reproduce, duplicate, or copy material from the dashboard for external use.</li>
                     </ul>
 
-                    <h4>Disclaimer:</h4>
-                    <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+                    <h4>3. User Responsibilities</h4>
                     <ul>
-                        <li>limit or exclude our or your liability for death or personal injury;</li>
-                        <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-                        <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-                        <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+                        <li>You are responsible for maintaining the confidentiality of your account and password.</li>
+                        <li>You agree to accept responsibility for all activities that occur under your account.</li>
+                        <li>The information you provide must be accurate and complete.</li>
+                    </ul>
+                    
+                    <h4>4. Privacy Policy</h4>
+                    <p>Your use of the dashboard is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the site and informs users of our data collection practices.</p>
+
+                    <h4>5. Disclaimers</h4>
+                     <ul>
+                        <li>The dashboard and its content are provided "as is" without any warranties, express or implied.</li>
+                        <li>We do not warrant that the dashboard will be available at all times or that the information is free of errors.</li>
+                        <li>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our dashboard and the use of this dashboard.</li>
                     </ul>
                 </div>
                 <DialogFooter>
@@ -250,7 +253,7 @@ export default function DashboardPage() {
       </div>
 
       <footer className="mt-8 text-center text-sm text-muted-foreground">
-        MentifyAI © 2024 | <TermsAndConditionsDialog />
+        MentifyAI © 2025 | <TermsAndConditionsDialog />
       </footer>
     </>
   );
