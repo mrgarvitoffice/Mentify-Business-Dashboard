@@ -109,7 +109,7 @@ export default function DashboardLayout({
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[auto_1fr]">
       <DesktopSidebar />
-      <div className="flex flex-col max-h-screen">
+      <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60 lg:h-[60px] lg:px-6 sticky top-0 z-40">
            <div className="w-full flex-1">
              <div className="md:hidden font-semibold flex items-center gap-2">
