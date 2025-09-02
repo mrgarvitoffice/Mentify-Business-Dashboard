@@ -20,7 +20,7 @@ export default function LoginPage() {
             <CardDescription>Enter your credentials to access your dashboard.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form className="grid gap-4">
+            <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" type="email" placeholder="partner@mentify.ai" required />
@@ -37,7 +37,10 @@ export default function LoginPage() {
               <Button type="submit" className="w-full" asChild>
                 <Link href="/dashboard">Sign In</Link>
               </Button>
-            </form>
+               <Button variant="secondary" className="w-full" asChild>
+                <Link href="/dashboard">Continue as Guest</Link>
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
