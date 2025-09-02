@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import {
   Card,
   CardContent,
@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ChartTooltipContent } from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { incomeChartData, incomeChartConfig, incomeBreakdown } from "@/lib/data";
@@ -39,8 +39,8 @@ export default function IncomePage() {
         </CardHeader>
         <CardContent>
           <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={incomeChartData}>
+            <ChartContainer config={incomeChartConfig} className="h-full w-full">
+              <BarChart data={incomeChartData} accessibilityLayer>
                 <CartesianGrid vertical={false} />
                 <XAxis
                   dataKey="month"
@@ -56,7 +56,7 @@ export default function IncomePage() {
                   axisLine={false}
                   tickFormatter={(value) => `$${value}`}
                 />
-                <Tooltip
+                <ChartTooltip
                   cursor={{ fill: 'hsl(var(--muted))' }}
                   content={<ChartTooltipContent />}
                 />
@@ -66,7 +66,7 @@ export default function IncomePage() {
                   radius={[4, 4, 0, 0]}
                 />
               </BarChart>
-            </ResponsiveContainer>
+            </ChartContainer>
           </div>
         </CardContent>
       </Card>
