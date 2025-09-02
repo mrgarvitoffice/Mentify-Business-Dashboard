@@ -164,11 +164,13 @@ export default function IncomePage() {
             Detailed view of your recent earnings by category.
           </CardDescription>
         </CardHeader>
-        <CardContent className="hidden md:block">
+        <CardContent>
+          <div className="hidden md:block">
             <DesktopIncomeTable />
-        </CardContent>
-         <CardContent className="md:hidden">
+          </div>
+          <div className="md:hidden">
             <MobileIncomeList />
+          </div>
         </CardContent>
       </Card>
     </>
