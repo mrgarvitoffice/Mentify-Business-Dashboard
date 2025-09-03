@@ -18,16 +18,18 @@ export function FontSizeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const storedFontSize = localStorage.getItem('app-font-size') as FontSize | null;
     if (storedFontSize) {
-      setFontSize(storedFontSize);
+      handleSetFontSize(storedFontSize);
+    } else {
+      handleSetFontSize('sm');
     }
   }, []);
 
-  const handleSetFontSize = (newSize: FontSize) => {
+  const handleSetFontSize = useCallback((newSize: FontSize) => {
     setFontSize(newSize);
     localStorage.setItem('app-font-size', newSize);
     document.documentElement.classList.remove('text-sm', 'text-base', 'text-lg');
     document.documentElement.classList.add(`text-${newSize}`);
-  };
+  }, []);
 
   return (
     <FontSizeContext.Provider value={{ fontSize, setFontSize: handleSetFontSize }}>
