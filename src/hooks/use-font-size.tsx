@@ -13,7 +13,7 @@ interface FontSizeContextType {
 const FontSizeContext = createContext<FontSizeContextType | undefined>(undefined);
 
 export function FontSizeProvider({ children }: { children: React.ReactNode }) {
-  const [fontSize, setFontSize] = useState<FontSize>('base');
+  const [fontSize, setFontSize] = useState<FontSize>('sm');
 
   useEffect(() => {
     const storedFontSize = localStorage.getItem('app-font-size') as FontSize | null;
