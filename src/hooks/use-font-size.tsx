@@ -13,23 +13,24 @@ interface FontSizeContextType {
 const FontSizeContext = createContext<FontSizeContextType | undefined>(undefined);
 
 export function FontSizeProvider({ children }: { children: React.ReactNode }) {
+  // Set initial state to 'sm'. This helps prevent a flash of incorrect font size on load.
   const [fontSize, setFontSize] = useState<FontSize>('sm');
 
-  useEffect(() => {
-    const storedFontSize = localStorage.getItem('app-font-size') as FontSize | null;
-    if (storedFontSize) {
-      handleSetFontSize(storedFontSize);
-    } else {
-      handleSetFontSize('sm');
+  // This function now correctly applies the class to the root element.
+  const handleSetFontSize = useCallback((newSize: FontSize) => {
+    setFontSize(newSize);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('app-font-size', newSize);
+      document.documentElement.classList.remove('text-sm', 'text-base', 'text-lg');
+      document.documentElement.classList.add(`text-${newSize}`);
     }
   }, []);
 
-  const handleSetFontSize = useCallback((newSize: FontSize) => {
-    setFontSize(newSize);
-    localStorage.setItem('app-font-size', newSize);
-    document.documentElement.classList.remove('text-sm', 'text-base', 'text-lg');
-    document.documentElement.classList.add(`text-${newSize}`);
-  }, []);
+  useEffect(() => {
+    // On mount, check local storage and apply the stored size, or default to 'sm'.
+    const storedFontSize = localStorage.getItem('app-font-size') as FontSize | null;
+    handleSetFontSize(storedFontSize || 'sm');
+  }, [handleSetFontSize]);
 
   return (
     <FontSizeContext.Provider value={{ fontSize, setFontSize: handleSetFontSize }}>
