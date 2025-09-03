@@ -1,1 +1,2 @@
-Mentify Ai - Busi
+Mentify Ai - Business Dashboard
+
